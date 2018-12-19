@@ -1,13 +1,13 @@
-package fr.wushunantes.backend;
+package fr.kungfunantes.backend;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class BackendApplication {
+public class SportsClubBackendApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(BackendApplication.class, args);
+		SpringApplication.run(SportsClubBackendApplication.class, args);
 	}
 
 }
