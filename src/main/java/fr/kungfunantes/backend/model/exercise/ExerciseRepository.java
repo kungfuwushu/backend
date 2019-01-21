@@ -9,7 +9,11 @@ import java.util.List;
 
 @Repository
 public interface ExerciseRepository extends JpaRepository<Exercise, Long>{
-    public List<Exercise> findByNameAndType(String name, String type);
+    public List<Exercise> findByNameContaining(String name);
+
+    public List<Exercise> findByType(Exercise.Type type);
+
+    public List<Exercise> findByNameLikeAndType(String name, Exercise.Type type);
     
     @Query("select e from Exercise e where e.category.id = :categoryId")
     public List<Exercise> findByCategoryId(@Param("categoryId") Long categoryId);

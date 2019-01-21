@@ -7,5 +7,5 @@ import java.util.List;
 
 @Repository
 public interface RankRepository extends JpaRepository<Rank, Long>{
-    public List<Rank> findByName(String name);
+    public List<Rank> findByNameContaining(String name);
 }

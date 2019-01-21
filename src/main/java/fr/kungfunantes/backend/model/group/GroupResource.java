@@ -23,7 +23,7 @@ public class GroupResource {
     @GetMapping("/groups")
     @ResponseBody
 	public List<GroupDto> byName(@RequestParam(value = "name", required = false) String name) {
-        return convertToDto(groupRepository.findByName(name));
+        return convertToDto(groupRepository.findByNameContaining(name));
 	}
 
     @GetMapping("/groups/{id}")

@@ -13,7 +13,7 @@ import javax.persistence.Enumerated;
     @JsonSubTypes.Type(value = PhysicalDto.class, name = "PHYSICAL"),
     @JsonSubTypes.Type(value = TaoluDto.class, name = "TAOLU")
 })
-public abstract class ExerciseDto {
+public class ExerciseDto {
     private Long id;
     private String name;
     private String description;

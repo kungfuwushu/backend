@@ -22,7 +22,7 @@ public class RankResource {
     @GetMapping("/ranks")
     @ResponseBody
 	public List<RankDto> byName(@RequestParam(value = "name", required = true) String name) {
-        return convertToDto(rankRepository.findByName(name));
+        return convertToDto(rankRepository.findByNameContaining(name));
 	}
 
     @PostMapping("/ranks")

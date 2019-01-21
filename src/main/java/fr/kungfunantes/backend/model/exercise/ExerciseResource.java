@@ -26,9 +26,16 @@ public class ExerciseResource {
 
     @GetMapping("/exercises")
     @ResponseBody
-    public List<ExerciseDto> byNameAndType(@RequestParam(value = "name", required = false) String name,
-        @RequestParam(value = "type", required = false) String type) {
-        return convertToDto(exerciseRepository.findByNameAndType(name, type));
+    public List<ExerciseDto> byNameAndType(
+            @RequestParam(value = "name", required = false) String name,
+            @RequestParam(value = "type", required = false) Exercise.Type type) {
+        if (name != null && type != null)
+            return convertToDto(exerciseRepository.findByNameLikeAndType(name, type));
+        if (type != null)
+            return convertToDto(exerciseRepository.findByType(type));
+        if (name != null)
+            return convertToDto(exerciseRepository.findByNameContaining(name));
+        return convertToDto(exerciseRepository.findAll());
 	}
 
     @GetMapping("/evaluations/{id}/exercises")

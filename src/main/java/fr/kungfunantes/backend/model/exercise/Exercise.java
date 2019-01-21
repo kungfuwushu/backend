@@ -10,7 +10,7 @@ import java.util.List;
 @Entity
 @ApiModel
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-public abstract class Exercise {
+public class Exercise {
     
     public enum Type {
         PHYSICAL, TAOLU

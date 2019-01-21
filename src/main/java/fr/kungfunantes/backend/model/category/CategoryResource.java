@@ -29,7 +29,7 @@ public class CategoryResource {
     @GetMapping("/categories")
     @ResponseBody
 	public List<CategoryDto> byName(@RequestParam(value = "name", required = true) String name) {
-        return convertToDto(categoryRepository.findByName(name));
+        return convertToDto(categoryRepository.findByNameContaining(name));
 	}
 
     @PostMapping("/categories")
