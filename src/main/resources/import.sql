@@ -1,0 +1,1 @@
+INSERT INTO profile (id, firstname, lastname) VALUES (1, 'Prenom', 'Nom');
