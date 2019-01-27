@@ -23,8 +23,7 @@ public class AccountResource {
     @ResponseStatus(HttpStatus.CREATED)
     @ResponseBody
     public Account create(@RequestBody Account account) {
-        Preconditions.checkNotNull(account);
-        return accountRepository.save(account);
+        return Preconditions.checkNotNull(accountRepository.save(account));
     }
  
     @DeleteMapping("/accounts/{id}")

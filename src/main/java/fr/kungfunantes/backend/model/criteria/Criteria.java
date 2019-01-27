@@ -1,44 +1,33 @@
 package fr.kungfunantes.backend.model.criteria;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import fr.kungfunantes.backend.model.exercise.Exercise;
+import fr.kungfunantes.backend.utils.EntityIdResolver;
 import io.swagger.annotations.ApiModel;
+import lombok.Data;
 
 import javax.persistence.*;
 
+@Data
 @Entity
 @ApiModel
 public class Criteria {
     @Id
     @GeneratedValue
     private Long id;
-    private String value;
+    private String description;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "taolu_id", nullable = false)
+    @JoinColumn(name = "exercise_id", nullable = false)
+    @JsonIdentityInfo(
+            generator = ObjectIdGenerators.PropertyGenerator.class,
+            property = "id",
+            resolver = EntityIdResolver.class,
+            scope = Exercise.class)
+    @JsonIdentityReference(alwaysAsId = true)
+    @JsonProperty("exerciseId")
     private Exercise exercise;
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getValue() {
-        return value;
-    }
-
-    public Exercise getExercise() {
-        return exercise;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public void setValue(String value) {
-        this.value = value;
-    }
-
-    public void setExercise(Exercise exercise) {
-        this.exercise = exercise;
-    }
-
 }

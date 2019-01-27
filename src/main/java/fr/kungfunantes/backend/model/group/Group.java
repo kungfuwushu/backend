@@ -1,14 +1,25 @@
 package fr.kungfunantes.backend.model.group;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import fr.kungfunantes.backend.model.member.Member;
+import fr.kungfunantes.backend.utils.EntityIdResolver;
 import io.swagger.annotations.ApiModel;
+import lombok.Data;
 
 import javax.persistence.*;
 import java.util.List;
 
+@Data
 @Entity
 @ApiModel
 @Table(name = "group_table")
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id",
+        resolver = EntityIdResolver.class,
+        scope = Group.class)
 public class Group {
     @Id
     @GeneratedValue
@@ -16,29 +27,6 @@ public class Group {
     private String name;
 
     @OneToMany(mappedBy = "group")
+    @JsonIgnore
     private List<Member> members;
-
-    public Long getId() {
-        return id;
-    }
-
-    public List<Member> getMembers() {
-        return members;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setMembers(List<Member> members) {
-        this.members = members;
-    }
 }
