@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import fr.kungfunantes.backend.model.account.Account;
 import fr.kungfunantes.backend.model.group.Group;
+import fr.kungfunantes.backend.model.rank.Rank;
 import fr.kungfunantes.backend.utils.EntityIdResolver;
 import io.swagger.annotations.ApiModel;
 import lombok.Data;
@@ -23,7 +24,7 @@ import java.util.Date;
         scope = Member.class)
 public class Member {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String firstName;
     private String lastName;
@@ -33,14 +34,20 @@ public class Member {
     private String image;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "account_id", nullable = false)
+    @JoinColumn(name = "accountId", nullable = false)
     @JsonIdentityReference(alwaysAsId = true)
     @JsonProperty("accountId")
     private Account account;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "group_id", nullable = false)
+    @JoinColumn(name = "groupId", nullable = false)
     @JsonIdentityReference(alwaysAsId = true)
     @JsonProperty("groupId")
     private Group group;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "rankId", nullable = false)
+    @JsonIdentityReference(alwaysAsId = true)
+    @JsonProperty("rankId")
+    private Rank rank;
 }

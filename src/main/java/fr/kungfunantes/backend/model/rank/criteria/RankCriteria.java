@@ -17,12 +17,12 @@ import javax.persistence.*;
 @ApiModel
 public class RankCriteria {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private int maximumScore;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "rankexercise_id", nullable = false)
+    @JoinColumn(name = "rankExerciseId", nullable = false)
     @JsonIdentityInfo(
             generator = ObjectIdGenerators.PropertyGenerator.class,
             property = "id",
@@ -33,7 +33,7 @@ public class RankCriteria {
     private RankExercise rankExercise;
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "criteria_id", nullable = false)
+    @JoinColumn(name = "criteriaId", nullable = false)
     private Criteria criteria;
 
     @JsonIdentityInfo(

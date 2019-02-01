@@ -14,7 +14,7 @@ import java.util.List;
 @ApiModel
 public class Evaluation {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Date date;
     private String address;
@@ -23,17 +23,17 @@ public class Evaluation {
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(name = "evaluation_exercise",
-        joinColumns = @JoinColumn(name = "evaluation_id"),
-        inverseJoinColumns = @JoinColumn(name = "exercise_id")
+        joinColumns = @JoinColumn(name = "evaluationId"),
+        inverseJoinColumns = @JoinColumn(name = "exerciseId")
     )
-    @OrderColumn(name = "exercise_order")
+    @OrderColumn(name = "exerciseOrder")
     private List<Exercise> exercises;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(name = "evaluation_group",
-            joinColumns = @JoinColumn(name = "evaluation_id"),
-            inverseJoinColumns = @JoinColumn(name = "group_id")
+            joinColumns = @JoinColumn(name = "evaluationId"),
+            inverseJoinColumns = @JoinColumn(name = "groupId")
     )
-    @OrderColumn(name = "group_order")
+    @OrderColumn(name = "groupOrder")
     private List<Group> groups;
 }

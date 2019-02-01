@@ -22,7 +22,7 @@ import java.util.List;
         scope = Group.class)
 public class Group {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
 

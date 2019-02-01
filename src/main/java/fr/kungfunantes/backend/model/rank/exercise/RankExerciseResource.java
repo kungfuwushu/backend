@@ -13,6 +13,12 @@ public class RankExerciseResource {
 	@Autowired
 	private RankExerciseRepository rankExerciseRepository;
 
+    @GetMapping("/evaluations/{id}/rank-exercises")
+    @ResponseBody
+    public List<RankExercise> byEvaluationId(@PathVariable Long id) {
+        return rankExerciseRepository.findByEvaluationId(id);
+    }
+
     @GetMapping("/ranks/{id}/rank-exercises")
     @ResponseBody
 	public List<RankExercise> byRankId(@PathVariable Long id) {

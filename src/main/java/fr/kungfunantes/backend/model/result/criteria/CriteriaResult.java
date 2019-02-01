@@ -17,7 +17,7 @@ import javax.persistence.*;
 @ApiModel
 public class CriteriaResult {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private int score;
 

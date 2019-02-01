@@ -25,18 +25,18 @@ import static com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME;
 })
 public abstract class RankExercise {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private double coefficient;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "rank_id", nullable = false)
+    @JoinColumn(name = "rankId", nullable = false)
     @JsonIdentityReference(alwaysAsId = true)
     @JsonProperty("rankId")
     private Rank rank;
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "exercise_id", nullable = false)
+    @JoinColumn(name = "exerciseId", nullable = false)
     private Exercise exercise;
 
     @JsonIdentityInfo(

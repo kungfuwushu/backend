@@ -1,6 +1,7 @@
 package fr.kungfunantes.backend.model.evaluation;
 
 import com.google.common.base.Preconditions;
+import fr.kungfunantes.backend.utils.RestPreconditions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -12,6 +13,12 @@ public class EvaluationResource {
 
 	@Autowired
 	private EvaluationRepository evaluationRepository;
+
+    @GetMapping("/evaluations/{id}")
+    @ResponseBody
+    public Evaluation byId(@PathVariable Long id) {
+        return RestPreconditions.checkFound(evaluationRepository.findById(id));
+    }
 
     @GetMapping("/evaluations")
     @ResponseBody

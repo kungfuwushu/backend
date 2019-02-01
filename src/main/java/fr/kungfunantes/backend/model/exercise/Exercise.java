@@ -27,16 +27,17 @@ public abstract class Exercise {
     }
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private String description;
+    private String image;
 
     @Enumerated(EnumType.STRING)
     private Type type;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "category_id", nullable = false)
+    @JoinColumn(name = "categoryId", nullable = false)
     @JsonIdentityReference(alwaysAsId = true)
     @JsonProperty("categoryId")
     private Category category;

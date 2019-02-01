@@ -19,11 +19,18 @@ public class RankCriteriaResource {
         rankCriteriaRepository.deleteAll(rankCriteriaRepository.findAll());
     }
 
-    @GetMapping("/ranks-exercises/{id}/rank-criterias")
+    @GetMapping("/rank-exercises/{id}/rank-criterias")
     @ResponseBody
 	public List<RankCriteria> byRankExerciseId(@PathVariable Long id) {
         return rankCriteriaRepository.findByRankExerciseId(id);
 	}
+
+    @GetMapping("/evaluations/{id}/rank-criterias")
+    @ResponseBody
+    public List<RankCriteria> byEvaluationId(@PathVariable Long id) {
+        return rankCriteriaRepository.findByEvaluationId(id);
+    }
+
 
     @PostMapping("/rank-criterias")
     @ResponseStatus(HttpStatus.CREATED)
