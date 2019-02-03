@@ -7,7 +7,10 @@ import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
 import org.springframework.hateoas.Resource;
 import org.springframework.hateoas.mvc.ControllerLinkBuilder;
 import org.springframework.http.ResponseEntity;
@@ -25,6 +28,8 @@ import io.swagger.annotations.ApiOperation;
 // TODO add access control
 @RestController
 public class ProfileResource {
+
+	private static Logger LOGGER = LoggerFactory.getLogger(ProfileResource.class);
 
 	@Autowired
 	private ProfileRepository profileRepository;
@@ -63,28 +68,47 @@ public class ProfileResource {
 	@ApiOperation(value = "Creates a profile with the provided parameters",
     notes = "TODO the id should be calculated on the server, so we should not expect the client to provide it")
 	public ResponseEntity<Profile> createProfile(@RequestBody Profile profile) {
+
+		Optional<Profile> existingProfile = profileRepository.findOne(Example.of(profile));
+		if (existingProfile.isPresent()) {
+			LOGGER.error("A profile with the id {} already exists", profile.getId());
+			return ResponseEntity.badRequest().build();
+		}
+
 		Profile savedProfile = profileRepository.save(profile);
 
-		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-				.buildAndExpand(savedProfile.getId()).toUri();
+		URI location = ServletUriComponentsBuilder
+						.fromCurrentRequest()
+						.path("/{id}")
+						.buildAndExpand(savedProfile.getId())
+						.toUri();
 
-		return ResponseEntity.created(location).body(profile);
+		return ResponseEntity.created(location).body(savedProfile);
 
 	}
 	
 	@PutMapping("/profile/{id}")
 	@ApiOperation(value = "Updates the profile with the given id with the provided parameters")
-	public ResponseEntity<Profile> updateStudent(@RequestBody Profile profile, @PathVariable long id) {
+	public ResponseEntity<Profile> updateProfile(@RequestBody Profile profile, @PathVariable long id) {
 
+		// check coherence
+		if (!profile.getId().equals(id)) {
+			return ResponseEntity.badRequest().build();
+		}
+
+		// check validity of input data
 		Optional<Profile> optionalProfile = profileRepository.findById(id);
-
-		if (!optionalProfile.isPresent())
+		if (!optionalProfile.isPresent()) {
 			return ResponseEntity.notFound().build();
+		}
 
-		profile.setId(id);
-		
-		profileRepository.save(profile);
+		// do the update
+		Profile updateProfile = optionalProfile.get();
+		updateProfile.setFirstname(profile.getFirstname());
+		updateProfile.setLastname(profile.getLastname());
+		profileRepository.save(updateProfile);
 
-		return ResponseEntity.ok(profile);
+		// return the updated value
+		return ResponseEntity.ok(updateProfile);
 	}
 }
