@@ -19,6 +19,8 @@ INSERT INTO rank (id, name, description, maximumScore) VALUES (3, 'Grade 3', 'Un
 
 INSERT INTO rankExercise (id, dtype, rankId, exerciseId, coefficient) VALUES (1, 'TAOLU', 1, 3, 0.5);
 INSERT INTO rankExercise (id, dtype, rankId, exerciseId, coefficient) VALUES (2, 'TAOLU', 1, 4, 1.5);
+INSERT INTO rankExercise (id, dtype, rankId, exerciseId, coefficient) VALUES (3, 'PHYSICAL', 1, 1, 2.5);
+INSERT INTO rankExercise (id, dtype, rankId, exerciseId, coefficient) VALUES (4, 'PHYSICAL', 1, 2, 1.0);
 
 INSERT INTO rankCriteria (id, criteriaId, rankExerciseId, maximumScore) VALUES (1, 1, 1, 5);
 INSERT INTO rankCriteria (id, criteriaId, rankExerciseId, maximumScore) VALUES (2, 2, 1, 10);
@@ -29,8 +31,10 @@ INSERT INTO rankCriteria (id, criteriaId, rankExerciseId, maximumScore) VALUES (
 
 INSERT INTO evaluation (id, date, address, city, postalCode) VALUES (1, '2019-01-30', 'Rue Christian Pauc', 'Nantes', '44300');
 
-INSERT INTO evaluation_exercise (evaluationId, exerciseId, exerciseOrder) VALUES (1, 3, 0);
-INSERT INTO evaluation_exercise (evaluationId, exerciseId, exerciseOrder) VALUES (1, 4, 1);
+INSERT INTO evaluation_exercise (evaluationId, exerciseId, exerciseOrder) VALUES (1, 1, 0);
+INSERT INTO evaluation_exercise (evaluationId, exerciseId, exerciseOrder) VALUES (1, 2, 1);
+INSERT INTO evaluation_exercise (evaluationId, exerciseId, exerciseOrder) VALUES (1, 3, 2);
+INSERT INTO evaluation_exercise (evaluationId, exerciseId, exerciseOrder) VALUES (1, 4, 3);
 
 INSERT INTO account (id, firstName, lastName, emailAddress, privilege) VALUES (1, 'Ximeng', 'Zhang', 'xz@polytech.com', 'NONE'), ;
 INSERT INTO account (id, firstName, lastName, emailAddress, privilege) VALUES (2, 'Tiphaine', 'Besnard', 'tb@polytech.com', 'NONE');
