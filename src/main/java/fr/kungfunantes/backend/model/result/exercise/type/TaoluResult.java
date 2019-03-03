@@ -1,6 +1,5 @@
 package fr.kungfunantes.backend.model.result.exercise.type;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import fr.kungfunantes.backend.model.result.criteria.CriteriaResult;
 import fr.kungfunantes.backend.model.result.exercise.ExerciseResult;
 import io.swagger.annotations.ApiModel;
@@ -17,6 +16,5 @@ import java.util.List;
 @DiscriminatorValue(value = "TAOLU")
 public class TaoluResult extends ExerciseResult {
     @OneToMany(mappedBy = "exerciseResult")
-    @JsonIgnore
     private List<CriteriaResult> criteriaResults;
 }

@@ -1,7 +1,7 @@
 package fr.kungfunantes.backend.model.rank.exercise.type;
 
-import fr.kungfunantes.backend.model.rank.criteria.RankCriteria;
 import fr.kungfunantes.backend.model.rank.exercise.RankExercise;
+import fr.kungfunantes.backend.model.rank.round.RankRound;
 import io.swagger.annotations.ApiModel;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -15,8 +15,8 @@ import java.util.List;
 @Data
 @Entity
 @ApiModel
-@DiscriminatorValue(value = "TAOLU")
-public class RankTaolu extends RankExercise {
+@DiscriminatorValue(value = "FIGHT")
+public class RankFight extends RankExercise {
     @OneToMany(mappedBy = "rankExercise")
-    private List<RankCriteria> rankCriterion;
+    private List<RankRound> rankRounds;
 }

@@ -1,8 +1,8 @@
-package fr.kungfunantes.backend.model.criteria;
+package fr.kungfunantes.backend.model.round;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface CriteriaRepository extends JpaRepository<Criteria, Long>{
+public interface RoundRepository extends JpaRepository<Round, Long> {
 }

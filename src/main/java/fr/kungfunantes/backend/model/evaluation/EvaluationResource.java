@@ -26,18 +26,6 @@ public class EvaluationResource {
         return evaluationRepository.findAll();
     }
 
-    @GetMapping("/groups/{id}/upcoming-evaluations")
-    @ResponseBody
-	public List<Evaluation> upcomingByGroupId(@PathVariable Long id) {
-        return evaluationRepository.upcomingByGroupId(id);
-    }
-    
-    @GetMapping("/groups/{id}/past-evaluations")
-    @ResponseBody
-	public List<Evaluation> pastByGroupId(@PathVariable Long id) {
-        return evaluationRepository.pastByGroupId(id);
-	}
-
     @PostMapping("/evaluations")
     @ResponseStatus(HttpStatus.CREATED)
     @ResponseBody
