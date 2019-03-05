@@ -39,9 +39,9 @@ INSERT INTO round_criteria (roundId, criteriaId) VALUES (2, 2);
 INSERT INTO round_criteria (roundId, criteriaId) VALUES (2, 3);
 INSERT INTO round_criteria (roundId, criteriaId) VALUES (3, 1);
 
-INSERT INTO rank (id, name, description, maximumScore) VALUES (1, 'Grade 1', 'Une description', 100);
-INSERT INTO rank (id, name, description, maximumScore) VALUES (2, 'Grade 2', 'Une description', 70);
-INSERT INTO rank (id, name, description, maximumScore) VALUES (3, 'Grade 3', 'Une description', 150);
+INSERT INTO rank (id, name, description, maximumScore, image) VALUES (1, 'Petit Panda', 'Une description', 100, 'https://i1.wp.com/www.getbeautified.com/wp-content/uploads/2018/07/How-to-Draw-a-Cartoon-Panda-21.png?fit=591%2C520&ssl=1');
+INSERT INTO rank (id, name, description, maximumScore, image) VALUES (2, 'Grand Tigre', 'Une description', 70, 'https://us.123rf.com/450wm/makstrv/makstrv1604/makstrv160400005/54905547-stock-vector-aggressive-tiger-face-sign-symbol-vector-illustration.jpg?ver=6');
+INSERT INTO rank (id, name, description, maximumScore, image) VALUES (3, 'Moyen Dragon', 'Une description', 150, 'https://friendlystock.com/wp-content/uploads/2018/05/9-cute-dragon-breathing-fire-cartoon-clipart.jpg');
 
 INSERT INTO rankExercise (id, dtype, rankId, exerciseId, coefficient) VALUES (1, 'TAOLU', 1, 3, 0.5);
 INSERT INTO rankExercise (id, dtype, rankId, exerciseId, coefficient) VALUES (2, 'TAOLU', 1, 4, 1.5);

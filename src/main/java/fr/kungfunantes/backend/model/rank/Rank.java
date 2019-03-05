@@ -26,4 +26,5 @@ public class Rank {
     private String name;
     private String description;
     private int maximumScore;
+    private String image;
 }
