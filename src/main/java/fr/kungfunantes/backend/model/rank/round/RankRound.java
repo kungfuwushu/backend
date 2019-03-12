@@ -1,29 +1,30 @@
-package fr.kungfunantes.backend.model.rank.criteria;
+package fr.kungfunantes.backend.model.rank.round;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import fr.kungfunantes.backend.model.criteria.Criteria;
+import fr.kungfunantes.backend.model.rank.criteria.RankCriteria;
 import fr.kungfunantes.backend.model.rank.exercise.RankExercise;
-import fr.kungfunantes.backend.model.rank.round.RankRound;
+import fr.kungfunantes.backend.model.round.Round;
 import fr.kungfunantes.backend.utils.EntityIdResolver;
 import io.swagger.annotations.ApiModel;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @Entity
 @ApiModel
-public class RankCriteria {
+public class RankRound {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private int maximumScore;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "rankExerciseId")
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "rankExerciseId", nullable = false)
     @JsonIdentityInfo(
             generator = ObjectIdGenerators.PropertyGenerator.class,
             property = "id",
@@ -33,20 +34,12 @@ public class RankCriteria {
     @JsonProperty(value = "rankExerciseId")
     private RankExercise rankExercise;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "rankRoundId")
-    @JsonIdentityInfo(
-            generator = ObjectIdGenerators.PropertyGenerator.class,
-            property = "id",
-            resolver = EntityIdResolver.class,
-            scope = RankRound.class)
-    @JsonIdentityReference(alwaysAsId = true)
-    @JsonProperty(value = "rankRoundId")
-    private RankRound rankRound;
+    @OneToMany(mappedBy = "rankRound")
+    private List<RankCriteria> rankCriterion;
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "criteriaId", nullable = false)
-    private Criteria criteria;
+    @JoinColumn(name = "roundId", nullable = false)
+    private Round round;
 
     @JsonIdentityInfo(
             generator = ObjectIdGenerators.PropertyGenerator.class,
@@ -54,8 +47,8 @@ public class RankCriteria {
             resolver = EntityIdResolver.class,
             scope = Criteria.class)
     @JsonIdentityReference
-    @JsonProperty(value = "criteriaId")
-    public void setCriteriaWithId(Criteria criteria) {
-        this.criteria = criteria;
+    @JsonProperty(value = "roundId")
+    public void setRoundWithId(Round round) {
+        this.round = round;
     }
 }

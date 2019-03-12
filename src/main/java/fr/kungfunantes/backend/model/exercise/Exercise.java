@@ -2,6 +2,7 @@ package fr.kungfunantes.backend.model.exercise;
 
 import com.fasterxml.jackson.annotation.*;
 import fr.kungfunantes.backend.model.category.Category;
+import fr.kungfunantes.backend.model.exercise.type.Fight;
 import fr.kungfunantes.backend.model.exercise.type.Physical;
 import fr.kungfunantes.backend.model.exercise.type.Taolu;
 import io.swagger.annotations.ApiModel;
@@ -19,11 +20,14 @@ import static com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME;
 @JsonTypeInfo(use = NAME, include = EXISTING_PROPERTY, property = "type")
 @JsonSubTypes({
         @JsonSubTypes.Type(value = Taolu.class, name = "TAOLU"),
-        @JsonSubTypes.Type(value = Physical.class, name = "PHYSICAL")
+        @JsonSubTypes.Type(value = Physical.class, name = "PHYSICAL"),
+        @JsonSubTypes.Type(value = Fight.class, name = "FIGHT"),
 })
 public abstract class Exercise {
     public enum Type {
-        PHYSICAL, TAOLU
+        PHYSICAL,
+        TAOLU,
+        FIGHT
     }
 
     @Id

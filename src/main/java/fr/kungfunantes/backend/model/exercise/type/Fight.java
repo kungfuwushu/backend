@@ -1,7 +1,7 @@
 package fr.kungfunantes.backend.model.exercise.type;
 
-import fr.kungfunantes.backend.model.criteria.Criteria;
 import fr.kungfunantes.backend.model.exercise.Exercise;
+import fr.kungfunantes.backend.model.round.Round;
 import io.swagger.annotations.ApiModel;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -13,12 +13,12 @@ import java.util.Set;
 @Data
 @Entity
 @ApiModel
-@DiscriminatorValue(value = "TAOLU")
-public class Taolu extends Exercise {
+@DiscriminatorValue(value = "FIGHT")
+public class Fight extends Exercise {
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinTable(name = "exercise_criteria",
+    @JoinTable(name = "exercise_round",
             joinColumns = @JoinColumn(name = "exerciseId"),
-            inverseJoinColumns = @JoinColumn(name = "criteriaId")
+            inverseJoinColumns = @JoinColumn(name = "roundId")
     )
-    private Set<Criteria> criterion;
+    private Set<Round> rounds;
 }

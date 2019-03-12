@@ -18,7 +18,8 @@ import javax.persistence.*;
         scope = Account.class)
 public class Account {
     public enum AccountPrivilege {
-        TEACHER, NONE
+        TEACHER,
+        NONE
     }
 
     @Id
