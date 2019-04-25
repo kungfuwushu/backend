@@ -3,6 +3,7 @@ package fr.kungfunantes.backend.model.rank.exercise;
 import com.fasterxml.jackson.annotation.*;
 import fr.kungfunantes.backend.model.exercise.Exercise;
 import fr.kungfunantes.backend.model.rank.Rank;
+import fr.kungfunantes.backend.model.rank.exercise.type.RankFight;
 import fr.kungfunantes.backend.model.rank.exercise.type.RankPhysical;
 import fr.kungfunantes.backend.model.rank.exercise.type.RankTaolu;
 import fr.kungfunantes.backend.utils.EntityIdResolver;
@@ -21,7 +22,8 @@ import static com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME;
 @JsonTypeInfo(use = NAME, include = EXISTING_PROPERTY, property = "type")
 @JsonSubTypes({
         @JsonSubTypes.Type(value = RankTaolu.class, name = "TAOLU"),
-        @JsonSubTypes.Type(value = RankPhysical.class, name = "PHYSICAL")
+        @JsonSubTypes.Type(value = RankPhysical.class, name = "PHYSICAL"),
+        @JsonSubTypes.Type(value = RankFight.class, name = "FIGHT"),
 })
 public abstract class RankExercise {
     @Id

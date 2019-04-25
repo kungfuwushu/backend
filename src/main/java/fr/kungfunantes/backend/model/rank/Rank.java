@@ -2,14 +2,13 @@ package fr.kungfunantes.backend.model.rank;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import fr.kungfunantes.backend.model.rank.exercise.RankExercise;
 import fr.kungfunantes.backend.utils.EntityIdResolver;
 import io.swagger.annotations.ApiModel;
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Data
 @Entity
@@ -27,4 +26,7 @@ public class Rank {
     private String description;
     private int maximumScore;
     private String image;
+
+    @OneToMany(mappedBy = "rank")
+    private List<RankExercise> rankExercises;
 }

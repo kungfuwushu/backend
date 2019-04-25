@@ -1,5 +1,6 @@
 package fr.kungfunantes.backend.model.rank;
 
+import fr.kungfunantes.backend.utils.RestPreconditions;
 import com.google.common.base.Preconditions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,6 +19,12 @@ public class RankResource {
 	public List<Rank> byName(@RequestParam(value = "name", required = false, defaultValue = "") String name) {
         return rankRepository.findByNameContaining(name);
 	}
+
+    @GetMapping("/ranks/{id}")
+    @ResponseBody
+    public Rank byId(@PathVariable long id) {
+        return RestPreconditions.checkFound(rankRepository.findById(id));
+    }
 
     @PostMapping("/ranks")
     @ResponseStatus(HttpStatus.CREATED)
