@@ -1,4 +1,4 @@
-package fr.kungfunantes.backend.model.criteria;
+package fr.kungfunantes.backend.model.exercise;
 
 import io.swagger.annotations.ApiModel;
 import lombok.Data;

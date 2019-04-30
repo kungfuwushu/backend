@@ -1,11 +1,12 @@
 package fr.kungfunantes.backend.model.rank.exercise.type;
 
 import fr.kungfunantes.backend.model.rank.exercise.RankExercise;
-import fr.kungfunantes.backend.model.rank.round.RankRound;
+import fr.kungfunantes.backend.model.rank.exercise.RankRound;
 import io.swagger.annotations.ApiModel;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+import javax.persistence.CascadeType;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
@@ -17,6 +18,6 @@ import java.util.List;
 @ApiModel
 @DiscriminatorValue(value = "FIGHT")
 public class RankFight extends RankExercise {
-    @OneToMany(mappedBy = "rankExercise")
+    @OneToMany(cascade = CascadeType.ALL)
     private List<RankRound> rankRounds;
 }

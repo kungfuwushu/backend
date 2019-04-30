@@ -2,7 +2,7 @@ package fr.kungfunantes.backend.model.result.exercise;
 
 import com.fasterxml.jackson.annotation.*;
 import fr.kungfunantes.backend.model.rank.exercise.RankExercise;
-import fr.kungfunantes.backend.model.result.evaluation.EvaluationResult;
+import fr.kungfunantes.backend.model.result.EvaluationResult;
 import fr.kungfunantes.backend.model.result.exercise.type.PhysicalResult;
 import fr.kungfunantes.backend.model.result.exercise.type.TaoluResult;
 import fr.kungfunantes.backend.utils.EntityIdResolver;
@@ -12,14 +12,14 @@ import lombok.Data;
 import javax.persistence.*;
 import java.util.Date;
 
-import static com.fasterxml.jackson.annotation.JsonTypeInfo.As.EXISTING_PROPERTY;
+import static com.fasterxml.jackson.annotation.JsonTypeInfo.As.PROPERTY;
 import static com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME;
 
 @Data
 @Entity
 @ApiModel
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@JsonTypeInfo(use = NAME, include = EXISTING_PROPERTY, property = "type")
+@JsonTypeInfo(use = NAME, include = PROPERTY, property = "type")
 @JsonSubTypes({
         @JsonSubTypes.Type(value = TaoluResult.class, name = "TAOLU"),
         @JsonSubTypes.Type(value = PhysicalResult.class, name = "PHYSICAL")

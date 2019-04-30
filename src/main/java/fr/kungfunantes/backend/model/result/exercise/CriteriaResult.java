@@ -1,12 +1,10 @@
-package fr.kungfunantes.backend.model.result.criteria;
+package fr.kungfunantes.backend.model.result.exercise;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-import fr.kungfunantes.backend.model.rank.criteria.RankCriteria;
-import fr.kungfunantes.backend.model.result.exercise.ExerciseResult;
-import fr.kungfunantes.backend.model.result.round.RoundResult;
+import fr.kungfunantes.backend.model.rank.exercise.RankCriteria;
 import fr.kungfunantes.backend.utils.EntityIdResolver;
 import io.swagger.annotations.ApiModel;
 import lombok.Data;

@@ -30,14 +30,14 @@ public class Evaluation {
     @Enumerated(EnumType.STRING)
     private Type type;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "evaluation_exercise",
         joinColumns = @JoinColumn(name = "evaluationId"),
         inverseJoinColumns = @JoinColumn(name = "exerciseId")
     )
     private Set<Exercise> exercises;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "evaluation_group",
             joinColumns = @JoinColumn(name = "evaluationId"),
             inverseJoinColumns = @JoinColumn(name = "groupId")

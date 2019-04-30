@@ -1,6 +1,6 @@
 package fr.kungfunantes.backend.model.exercise.type;
 
-import fr.kungfunantes.backend.model.criteria.Criteria;
+import fr.kungfunantes.backend.model.exercise.Criteria;
 import fr.kungfunantes.backend.model.exercise.Exercise;
 import io.swagger.annotations.ApiModel;
 import lombok.Data;

@@ -1,7 +1,7 @@
 package fr.kungfunantes.backend.model.exercise.type;
 
 import fr.kungfunantes.backend.model.exercise.Exercise;
-import fr.kungfunantes.backend.model.round.Round;
+import fr.kungfunantes.backend.model.exercise.Round;
 import io.swagger.annotations.ApiModel;
 import lombok.Data;
 import lombok.EqualsAndHashCode;

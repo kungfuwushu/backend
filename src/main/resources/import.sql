@@ -39,9 +39,9 @@ INSERT INTO round_criteria (roundId, criteriaId) VALUES (2, 2);
 INSERT INTO round_criteria (roundId, criteriaId) VALUES (2, 3);
 INSERT INTO round_criteria (roundId, criteriaId) VALUES (3, 1);
 
-INSERT INTO rank (id, name, description, maximumScore, image) VALUES (1, 'Petit Panda', 'Une description', 100, 'https://i1.wp.com/www.getbeautified.com/wp-content/uploads/2018/07/How-to-Draw-a-Cartoon-Panda-21.png?fit=591%2C520&ssl=1');
-INSERT INTO rank (id, name, description, maximumScore, image) VALUES (2, 'Grand Tigre', 'Une description', 70, 'https://us.123rf.com/450wm/makstrv/makstrv1604/makstrv160400005/54905547-stock-vector-aggressive-tiger-face-sign-symbol-vector-illustration.jpg?ver=6');
-INSERT INTO rank (id, name, description, maximumScore, image) VALUES (3, 'Moyen Dragon', 'Une description', 150, 'https://friendlystock.com/wp-content/uploads/2018/05/9-cute-dragon-breathing-fire-cartoon-clipart.jpg');
+INSERT INTO rank (id, position, name, description, maximumScore, image) VALUES (1, 0, 'Petit Panda', 'Une description', 100, 'https://i1.wp.com/www.getbeautified.com/wp-content/uploads/2018/07/How-to-Draw-a-Cartoon-Panda-21.png?fit=591%2C520&ssl=1');
+INSERT INTO rank (id, position, name, description, maximumScore, image) VALUES (2, 1, 'Grand Tigre', 'Une description', 70, 'https://us.123rf.com/450wm/makstrv/makstrv1604/makstrv160400005/54905547-stock-vector-aggressive-tiger-face-sign-symbol-vector-illustration.jpg?ver=6');
+INSERT INTO rank (id, position, name, description, maximumScore, image) VALUES (3, 2, 'Moyen Dragon', 'Une description', 150, 'https://friendlystock.com/wp-content/uploads/2018/05/9-cute-dragon-breathing-fire-cartoon-clipart.jpg');
 
 INSERT INTO rankExercise (id, dtype, rankId, exerciseId, coefficient) VALUES (1, 'TAOLU', 1, 3, 0.5);
 INSERT INTO rankExercise (id, dtype, rankId, exerciseId, coefficient) VALUES (2, 'TAOLU', 1, 4, 1.5);
@@ -76,9 +76,9 @@ INSERT INTO rankCriteria (id, criteriaId, maximumScore, rankRoundId) VALUES (16,
 INSERT INTO rankCriteria (id, criteriaId, maximumScore, rankRoundId) VALUES (17, 3, 3, 4);
 INSERT INTO rankCriteria (id, criteriaId, maximumScore, rankRoundId) VALUES (18, 1, 5, 5);
 
-INSERT INTO evaluation (id, name, date, address, city, postalCode, type) VALUES (1, 'Evaluation n°1', '2019-06-01', 'Rue Christian Pauc', 'Nantes', '44300', 'RANK');
-INSERT INTO evaluation (id, name, date, address, city, postalCode, type) VALUES (2, 'Evaluation n°2', '2019-01-01', 'Rue Christian Pauc', 'Nantes', '44300', 'OTHER');
-INSERT INTO evaluation (id, name, date, address, city, postalCode, type) VALUES (3, 'Evaluation n°3', '2019-03-01', 'Rue Christian Pauc', 'Nantes', '44300', 'OTHER');
+INSERT INTO evaluation (id, name, date, address, city, postalCode, type) VALUES (1, 'Evaluation n°1', '2019-06-29 14:00:00', 'Rue Christian Pauc', 'Nantes', '44300', 'RANK');
+INSERT INTO evaluation (id, name, date, address, city, postalCode, type) VALUES (2, 'Evaluation n°2', '2019-01-15 08:00:00', 'Rue Christian Pauc', 'Nantes', '44300', 'OTHER');
+INSERT INTO evaluation (id, name, date, address, city, postalCode, type) VALUES (3, 'Evaluation n°3', '2019-03-01 15:00:00', 'Rue Christian Pauc', 'Nantes', '44300', 'OTHER');
 
 INSERT INTO evaluation_exercise (evaluationId, exerciseId) VALUES (1, 1);
 INSERT INTO evaluation_exercise (evaluationId, exerciseId) VALUES (1, 2);

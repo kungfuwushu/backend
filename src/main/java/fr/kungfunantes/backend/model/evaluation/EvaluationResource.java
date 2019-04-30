@@ -30,6 +30,12 @@ public class EvaluationResource {
     @ResponseStatus(HttpStatus.CREATED)
     @ResponseBody
     public Evaluation create(@RequestBody Evaluation evaluation) {
+        return update(evaluation);
+    }
+
+    @PutMapping("/evaluations")
+    @ResponseBody
+    public Evaluation update(@RequestBody Evaluation evaluation) {
         return Preconditions.checkNotNull(evaluationRepository.save(evaluation));
     }
  

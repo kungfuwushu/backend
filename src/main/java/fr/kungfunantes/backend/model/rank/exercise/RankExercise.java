@@ -2,7 +2,6 @@ package fr.kungfunantes.backend.model.rank.exercise;
 
 import com.fasterxml.jackson.annotation.*;
 import fr.kungfunantes.backend.model.exercise.Exercise;
-import fr.kungfunantes.backend.model.rank.Rank;
 import fr.kungfunantes.backend.model.rank.exercise.type.RankFight;
 import fr.kungfunantes.backend.model.rank.exercise.type.RankPhysical;
 import fr.kungfunantes.backend.model.rank.exercise.type.RankTaolu;
@@ -12,14 +11,14 @@ import lombok.Data;
 
 import javax.persistence.*;
 
-import static com.fasterxml.jackson.annotation.JsonTypeInfo.As.EXISTING_PROPERTY;
+import static com.fasterxml.jackson.annotation.JsonTypeInfo.As.PROPERTY;
 import static com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME;
 
 @Data
 @Entity
 @ApiModel
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@JsonTypeInfo(use = NAME, include = EXISTING_PROPERTY, property = "type")
+@JsonTypeInfo(use = NAME, include = PROPERTY, property = "type")
 @JsonSubTypes({
         @JsonSubTypes.Type(value = RankTaolu.class, name = "TAOLU"),
         @JsonSubTypes.Type(value = RankPhysical.class, name = "PHYSICAL"),
@@ -30,12 +29,7 @@ public abstract class RankExercise {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private double coefficient;
-
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "rankId", nullable = false)
-    @JsonIdentityReference(alwaysAsId = true)
-    @JsonProperty("rankId")
-    private Rank rank;
+    private int position;
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "exerciseId", nullable = false)

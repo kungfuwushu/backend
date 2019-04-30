@@ -1,4 +1,4 @@
-package fr.kungfunantes.backend.model.result.evaluation;
+package fr.kungfunantes.backend.model.result;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIdentityReference;

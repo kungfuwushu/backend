@@ -1,6 +1,9 @@
 package fr.kungfunantes.backend.model.exercise;
 
-import com.fasterxml.jackson.annotation.*;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import fr.kungfunantes.backend.model.category.Category;
 import fr.kungfunantes.backend.model.exercise.type.Fight;
 import fr.kungfunantes.backend.model.exercise.type.Physical;
@@ -10,14 +13,14 @@ import lombok.Data;
 
 import javax.persistence.*;
 
-import static com.fasterxml.jackson.annotation.JsonTypeInfo.As.EXISTING_PROPERTY;
+import static com.fasterxml.jackson.annotation.JsonTypeInfo.As.PROPERTY;
 import static com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME;
 
 @Data
 @Entity
 @ApiModel
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@JsonTypeInfo(use = NAME, include = EXISTING_PROPERTY, property = "type")
+@JsonTypeInfo(use = NAME, include = PROPERTY, property = "type")
 @JsonSubTypes({
         @JsonSubTypes.Type(value = Taolu.class, name = "TAOLU"),
         @JsonSubTypes.Type(value = Physical.class, name = "PHYSICAL"),

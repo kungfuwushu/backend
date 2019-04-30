@@ -26,7 +26,9 @@ public class Rank {
     private String description;
     private int maximumScore;
     private String image;
+    private int position;
 
-    @OneToMany(mappedBy = "rank")
+    @OneToMany(cascade = CascadeType.ALL)
+    @OrderBy("position ASC")
     private List<RankExercise> rankExercises;
 }
