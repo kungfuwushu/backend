@@ -1,6 +1,6 @@
 package fr.kungfunantes.backend;
 
-import fr.kungfunantes.backend.files.FileStorageProperties;
+import fr.kungfunantes.backend.properties.FileStorageProperties;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;

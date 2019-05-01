@@ -1,5 +1,7 @@
 package fr.kungfunantes.backend.utils;
 
+import fr.kungfunantes.backend.exception.ResourceNotFoundException;
+
 import java.util.Optional;
 
 public class RestPreconditions {
