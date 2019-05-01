@@ -1,4 +1,4 @@
-package fr.kungfunantes.backend.model.test.other;
+package fr.kungfunantes.backend.model.test.program;
 
 
 import fr.kungfunantes.backend.model.test.TestResult;
@@ -13,6 +13,6 @@ import javax.persistence.Entity;
 @Data
 @Entity
 @ApiModel
-@DiscriminatorValue(value = "OTHER")
-public class OtherTestResult extends TestResult {
+@DiscriminatorValue(value = "PROGRAM")
+public class ProgramTestResult extends TestResult {
 }

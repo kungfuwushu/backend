@@ -44,8 +44,8 @@ INSERT INTO rank (id, position, name, description, image) VALUES (2, 1, 'Grand T
 INSERT INTO rank (id, position, name, description, image) VALUES (3, 2, 'Moyen Dragon', 'Une description', 'https://friendlystock.com/wp-content/uploads/2018/05/9-cute-dragon-breathing-fire-cartoon-clipart.jpg');
 
 INSERT INTO test (id, dtype, type, name, date, address, city, postalCode) VALUES (1, 'RANK', 'RANK', 'Test n°1', '2019-06-29 14:00:00', 'Rue Christian Pauc', 'Nantes', '44300');
-INSERT INTO test (id, dtype, type, name, date, address, city, postalCode) VALUES (2, 'OTHER', 'OTHER', 'Test n°2', '2019-01-15 08:00:00', 'Rue Christian Pauc', 'Nantes', '44300');
-INSERT INTO test (id, dtype, type, name, date, address, city, postalCode) VALUES (3, 'OTHER', 'OTHER', 'Test n°3', '2019-03-01 15:00:00', 'Rue Christian Pauc', 'Nantes', '44300');
+INSERT INTO test (id, dtype, type, name, date, address, city, postalCode) VALUES (2, 'PROGRAM', 'PROGRAM', 'Test n°2', '2019-01-15 08:00:00', 'Rue Christian Pauc', 'Nantes', '44300');
+INSERT INTO test (id, dtype, type, name, date, address, city, postalCode) VALUES (3, 'PROGRAM', 'PROGRAM', 'Test n°3', '2019-03-01 15:00:00', 'Rue Christian Pauc', 'Nantes', '44300');
 
 INSERT INTO account (id, firstName, lastName, emailAddress, privilege) VALUES (1, 'Ximeng', 'Zhang', 'xz@polytech.com', 'NONE'), ;
 INSERT INTO account (id, firstName, lastName, emailAddress, privilege) VALUES (2, 'Tiphaine', 'Besnard', 'tb@polytech.com', 'NONE');

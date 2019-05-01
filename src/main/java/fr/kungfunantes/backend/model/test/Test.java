@@ -3,7 +3,7 @@ package fr.kungfunantes.backend.model.test;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import fr.kungfunantes.backend.model.Group;
-import fr.kungfunantes.backend.model.test.other.OtherTest;
+import fr.kungfunantes.backend.model.test.program.ProgramTest;
 import fr.kungfunantes.backend.model.test.rank.RankTest;
 import io.swagger.annotations.ApiModel;
 import lombok.Data;
@@ -22,12 +22,12 @@ import static com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME;
 @JsonTypeInfo(use = NAME, include = EXISTING_PROPERTY, property = "type", visible = true)
 @JsonSubTypes({
         @JsonSubTypes.Type(value = RankTest.class, name = "RANK"),
-        @JsonSubTypes.Type(value = OtherTest.class, name = "OTHER"),
+        @JsonSubTypes.Type(value = ProgramTest.class, name = "PROGRAM"),
 })
 public abstract class Test {
     public enum Type {
         RANK,
-        OTHER
+        PROGRAM
     }
 
     @Id
