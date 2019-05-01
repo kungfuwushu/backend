@@ -1,5 +1,7 @@
 package fr.kungfunantes.backend.model.exercise;
 
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import fr.kungfunantes.backend.model.exercise.fight.FightScale;
@@ -32,4 +34,21 @@ public abstract class ExerciseScale {
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "exerciseId", nullable = false)
     private Exercise exercise;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "newestVersionId")
+    @JsonIdentityReference(alwaysAsId = true)
+    @JsonProperty("newestVersionId")
+    private ExerciseScale newestVersion;
+
+    public abstract ExerciseScale clone();
+
+    public ExerciseScale clone(ExerciseScale exerciseScale) {
+        exerciseScale.setExercise(exercise);
+        exerciseScale.setPosition(position);
+        return exerciseScale;
+    }
+
+    @Override
+    public abstract boolean equals(Object o);
 }

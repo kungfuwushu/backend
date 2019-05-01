@@ -17,4 +17,19 @@ public class CriteriaScale {
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "criteriaId", nullable = false)
     private Criteria criteria;
+
+    public CriteriaScale clone() {
+        CriteriaScale criteriaScale = new CriteriaScale();
+        criteriaScale.setScale(scale);
+        criteriaScale.setCriteria(criteria);
+        return criteriaScale;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof CriteriaScale))
+            return false;
+        CriteriaScale criteriaScale = (CriteriaScale) o;
+        return scale == criteriaScale.getScale();
+    }
 }

@@ -2,7 +2,9 @@ package fr.kungfunantes.backend.resource;
 
 import com.google.common.base.Preconditions;
 import fr.kungfunantes.backend.model.test.Test;
+import fr.kungfunantes.backend.model.test.program.ProgramTest;
 import fr.kungfunantes.backend.repository.TestRepository;
+import fr.kungfunantes.backend.service.ExerciseScaleService;
 import fr.kungfunantes.backend.utils.RestPreconditions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,6 +17,9 @@ public class TestResource {
 
 	@Autowired
 	private TestRepository testRepository;
+
+    @Autowired
+    private ExerciseScaleService exerciseScaleService;
 
     @GetMapping("/tests")
     @ResponseBody
@@ -37,7 +42,13 @@ public class TestResource {
 
     @PutMapping("/tests")
     @ResponseBody
-    public Test update(@RequestBody Test test) {
-        return Preconditions.checkNotNull(testRepository.save(test));
+    public Test update(@RequestBody Test updatedTest) {
+        Test test = RestPreconditions.checkFound(testRepository.findById(updatedTest.getId()));
+        if (test instanceof ProgramTest && updatedTest instanceof ProgramTest)
+            ((ProgramTest) updatedTest).setExercisesScales(exerciseScaleService.update(
+                    ((ProgramTest) test).getExercisesScales(),
+                    ((ProgramTest) updatedTest).getExercisesScales()
+            ));
+        return Preconditions.checkNotNull(testRepository.save(updatedTest));
     }
 }

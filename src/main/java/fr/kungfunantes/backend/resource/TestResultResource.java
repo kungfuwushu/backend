@@ -31,7 +31,7 @@ public class TestResultResource {
         Test test = RestPreconditions.checkFound(testRepository.findById(id));
         for (Group group: test.getGroups())
             for (Member performer: group.getMembers())
-                if (!testResultRepository.existsForTestIdAndPerformerId(id, performer.getId()))
+                if (!testResultRepository.existsWithTestIdAndPerformerId(id, performer.getId()))
                     testResultRepository.save(Preconditions.checkNotNull(TestResult.create(test, performer, group)));
         return testResultRepository.findAllByTestId(id);
     }

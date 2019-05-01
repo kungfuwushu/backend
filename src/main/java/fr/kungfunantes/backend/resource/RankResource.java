@@ -3,6 +3,7 @@ package fr.kungfunantes.backend.resource;
 import com.google.common.base.Preconditions;
 import fr.kungfunantes.backend.model.Rank;
 import fr.kungfunantes.backend.repository.RankRepository;
+import fr.kungfunantes.backend.service.ExerciseScaleService;
 import fr.kungfunantes.backend.utils.RestPreconditions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,6 +16,9 @@ public class RankResource {
 
 	@Autowired
 	private RankRepository rankRepository;
+
+	@Autowired
+    private ExerciseScaleService exerciseScaleService;
 
     @GetMapping("/ranks")
     @ResponseBody
@@ -33,13 +37,18 @@ public class RankResource {
     @ResponseBody
     public Rank create(@RequestBody Rank rank) {
         rank.setPosition(rankRepository.findAll().size());
-        return update(rank);
+        return Preconditions.checkNotNull(rankRepository.save(rank));
     }
 
     @PutMapping("/ranks")
     @ResponseBody
-    public Rank update(@RequestBody Rank rank) {
-        return Preconditions.checkNotNull(rankRepository.save(rank));
+    public Rank update(@RequestBody Rank updatedRank) {
+        Rank rank = RestPreconditions.checkFound(rankRepository.findById(updatedRank.getId()));
+        updatedRank.setExercisesScales(exerciseScaleService.update(
+                rank.getExercisesScales(),
+                updatedRank.getExercisesScales()
+        ));
+        return Preconditions.checkNotNull(rankRepository.save(updatedRank));
     }
 
     @PutMapping("/ranks/{id}/reorder")
