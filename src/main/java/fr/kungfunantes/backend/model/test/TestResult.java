@@ -52,8 +52,10 @@ public abstract class TestResult {
 
     public static TestResult create(Test test, Member performer, Group performerGroup) {
         TestResult testResult = null;
-        if (test.getType() == RANK)
+        if (test.getType() == RANK) {
             testResult = new RankTestResult();
+            ((RankTestResult) testResult).setRank(performer.getRank());
+        }
         else if (test.getType() == PROGRAM)
             testResult = new ProgramTestResult();
 

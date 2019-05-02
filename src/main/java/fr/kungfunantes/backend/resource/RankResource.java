@@ -32,6 +32,12 @@ public class RankResource {
         return RestPreconditions.checkFound(rankRepository.findById(id));
     }
 
+    @GetMapping("/tests/{id}/ranks")
+    @ResponseBody
+    public List<Rank> byTestId(@PathVariable long id) {
+        return rankRepository.findAllByTestId(id);
+    }
+
     @PostMapping("/ranks")
     @ResponseStatus(HttpStatus.CREATED)
     @ResponseBody

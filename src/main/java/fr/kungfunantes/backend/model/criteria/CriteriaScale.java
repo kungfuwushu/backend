@@ -12,7 +12,7 @@ public class CriteriaScale {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private int scale;
+    private Integer scale;
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "criteriaId", nullable = false)
