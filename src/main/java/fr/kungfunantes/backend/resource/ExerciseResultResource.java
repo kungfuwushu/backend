@@ -27,6 +27,12 @@ public class ExerciseResultResource {
         return exerciseResultRepository.findAllByTestResultIdAndExerciseScaleId(testResultId, exerciseScaleId);
     }
 
+    @GetMapping("/members/{memberId}/ranks/{rankId}")
+    @ResponseBody
+    public List<ExerciseResult> byMemberIdAndRankId(@PathVariable Long memberId, @PathVariable Long rankId) {
+        return exerciseResultRepository.findAllByMemberIdAndRankId(memberId, rankId);
+    }
+
     @PostMapping("/tests-results/{id}/exercises-results")
     @ResponseStatus(HttpStatus.CREATED)
     @ResponseBody
@@ -38,9 +44,9 @@ public class ExerciseResultResource {
         return exerciseResult;
     }
 
-    @PutMapping("/tests-results/{id}/exercises-results")
+    @PutMapping("/exercises-results")
     @ResponseBody
-    public ExerciseResult update(@PathVariable Long id, @RequestBody ExerciseResult exerciseResult) {
+    public ExerciseResult update(@RequestBody ExerciseResult exerciseResult) {
         return Preconditions.checkNotNull(exerciseResultRepository.save(exerciseResult));
     }
 }

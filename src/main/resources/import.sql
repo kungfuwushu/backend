@@ -1,12 +1,12 @@
 INSERT INTO category (id, name) VALUES (1, 'Catégorie 1');
 INSERT INTO category (id, name) VALUES (2, 'Catégorie 2');
 
-INSERT INTO exercise (id, dtype, type, categoryId, name, description, measurementUnit, objective, image) VALUES (1, 'PHYSICAL', 'PHYSICAL', 1, 'Exo Physique 1', 'Petite description', 'METER', 'MAXIMUM', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeAgs19U6GP04mttvxSAKmc_631I2zOjCHkGmtUnYsXt0Ze582hA');
-INSERT INTO exercise (id, dtype, type, categoryId, name, description, measurementUnit, objective, image) VALUES (2, 'PHYSICAL', 'PHYSICAL', 1, 'Exo Physique 2', 'Une description', 'SECOND', 'MINIMUM', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeAgs19U6GP04mttvxSAKmc_631I2zOjCHkGmtUnYsXt0Ze582hA');
-INSERT INTO exercise (id, dtype, type, categoryId, name, description, image) VALUES (3, 'TAOLU', 'TAOLU', 2, 'Exo Taolu 1', 'Une description', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeAgs19U6GP04mttvxSAKmc_631I2zOjCHkGmtUnYsXt0Ze582hA');
-INSERT INTO exercise (id, dtype, type, categoryId, name, description, image) VALUES (4, 'TAOLU', 'TAOLU', 2, 'Exo Taolu 2', 'Une description', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeAgs19U6GP04mttvxSAKmc_631I2zOjCHkGmtUnYsXt0Ze582hA');
-INSERT INTO exercise (id, dtype, type, categoryId, name, description, image) VALUES (5, 'FIGHT', 'FIGHT', 2, 'Exo Fight 1', 'Une description', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeAgs19U6GP04mttvxSAKmc_631I2zOjCHkGmtUnYsXt0Ze582hA');
-INSERT INTO exercise (id, dtype, type, categoryId, name, description, image) VALUES (6, 'FIGHT', 'FIGHT', 2, 'Exo Fight 2', 'Une description', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeAgs19U6GP04mttvxSAKmc_631I2zOjCHkGmtUnYsXt0Ze582hA');
+INSERT INTO exercise (id, dtype, type, categoryId, name, description, measurementUnit, objective, image) VALUES (1, 'PHYSICAL', 'PHYSICAL', 1, 'Exercice Physique 1', 'Description exercice physique n°1', 'METER', 'MAXIMUM', 'http://de1.iconarchive.com/download/i61348/majdi-khawaja/kung-fu-panda/Po-3.ico');
+INSERT INTO exercise (id, dtype, type, categoryId, name, description, measurementUnit, objective, image) VALUES (2, 'PHYSICAL', 'PHYSICAL', 1, 'Exo Physique 2', 'La description du physique 2', 'SECOND', 'MINIMUM', 'https://freepngimg.com/download/kung_fu_panda/1-2-kung-fu-panda-fighting-png.png');
+INSERT INTO exercise (id, dtype, type, categoryId, name, description, image) VALUES (3, 'TAOLU', 'TAOLU', 2, 'Exercice Taolu 1', 'Voici la description de l exercice Taolu n°1', 'http://www.iconarchive.com/download/i61351/majdi-khawaja/kung-fu-panda/Po.ico');
+INSERT INTO exercise (id, dtype, type, categoryId, name, description, image) VALUES (4, 'TAOLU', 'TAOLU', 2, 'Exercice Taolu 2', 'Une description pour l exercice taolu 2', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSt5xTFwgOJ16PwdkVPNmlRvegjsA2hxFLAwSozFuvnm5uQY7C');
+INSERT INTO exercise (id, dtype, type, categoryId, name, description, image) VALUES (5, 'FIGHT', 'FIGHT', 2, 'Exercice Fight 1', 'Description exercice combat 1', 'http://aux4.iconspalace.com/uploads/7798440781491586594.png');
+INSERT INTO exercise (id, dtype, type, categoryId, name, description, image) VALUES (6, 'FIGHT', 'FIGHT', 2, 'Exercice Fight 2', 'La description du combat 2', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRW__xUrkOYSKT_Ys07Op6PeaeCdSVAoNCy1P2J8QpxCNbF3VTS');
 
 INSERT INTO criteria (id, name) VALUES (1, 'critère 1');
 INSERT INTO criteria (id, name) VALUES (2, 'critère 2');
@@ -39,7 +39,7 @@ INSERT INTO round_criteria (roundId, criteriaId) VALUES (2, 2);
 INSERT INTO round_criteria (roundId, criteriaId) VALUES (2, 3);
 INSERT INTO round_criteria (roundId, criteriaId) VALUES (3, 1);
 
-INSERT INTO rank (id, position, name, description, image) VALUES (1, 0, 'Petit Panda', 'Une description', 'https://i1.wp.com/www.getbeautified.com/wp-content/uploads/2018/07/How-to-Draw-a-Cartoon-Panda-21.png?fit=591%2C520&ssl=1');
+INSERT INTO rank (id, position, name, description, image) VALUES (1, 0, 'Petit Panda', 'Une description', 'https://www.searchpng.com/wp-content/uploads/2019/03/kung-fu-Panda-PNG.png');
 INSERT INTO rank (id, position, name, description, image) VALUES (2, 1, 'Grand Tigre', 'Une description', 'https://us.123rf.com/450wm/makstrv/makstrv1604/makstrv160400005/54905547-stock-vector-aggressive-tiger-face-sign-symbol-vector-illustration.jpg?ver=6');
 INSERT INTO rank (id, position, name, description, image) VALUES (3, 2, 'Moyen Dragon', 'Une description', 'https://friendlystock.com/wp-content/uploads/2018/05/9-cute-dragon-breathing-fire-cartoon-clipart.jpg');
 
