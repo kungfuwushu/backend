@@ -1,10 +1,13 @@
 package fr.kungfunantes.backend.model.exercise;
 
-import com.fasterxml.jackson.annotation.*;
-import fr.kungfunantes.backend.model.category.Category;
-import fr.kungfunantes.backend.model.exercise.type.Fight;
-import fr.kungfunantes.backend.model.exercise.type.Physical;
-import fr.kungfunantes.backend.model.exercise.type.Taolu;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import fr.kungfunantes.backend.model.Category;
+import fr.kungfunantes.backend.model.exercise.fight.Fight;
+import fr.kungfunantes.backend.model.exercise.physical.Physical;
+import fr.kungfunantes.backend.model.exercise.taolu.Taolu;
 import io.swagger.annotations.ApiModel;
 import lombok.Data;
 
@@ -17,7 +20,7 @@ import static com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME;
 @Entity
 @ApiModel
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@JsonTypeInfo(use = NAME, include = EXISTING_PROPERTY, property = "type")
+@JsonTypeInfo(use = NAME, include = EXISTING_PROPERTY, property = "type", visible = true)
 @JsonSubTypes({
         @JsonSubTypes.Type(value = Taolu.class, name = "TAOLU"),
         @JsonSubTypes.Type(value = Physical.class, name = "PHYSICAL"),

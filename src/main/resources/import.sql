@@ -1,12 +1,12 @@
 INSERT INTO category (id, name) VALUES (1, 'Catégorie 1');
 INSERT INTO category (id, name) VALUES (2, 'Catégorie 2');
 
-INSERT INTO exercise (id, dtype, type, categoryId, name, description, measurementUnit, objective, image) VALUES (1, 'PHYSICAL', 'PHYSICAL', 1, 'Exo Physique 1', 'Petite description', 'METER', 'MAXIMUM', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeAgs19U6GP04mttvxSAKmc_631I2zOjCHkGmtUnYsXt0Ze582hA');
-INSERT INTO exercise (id, dtype, type, categoryId, name, description, measurementUnit, objective, image) VALUES (2, 'PHYSICAL', 'PHYSICAL', 1, 'Exo Physique 2', 'Une description', 'SECOND', 'MINIMUM', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeAgs19U6GP04mttvxSAKmc_631I2zOjCHkGmtUnYsXt0Ze582hA');
-INSERT INTO exercise (id, dtype, type, categoryId, name, description, image) VALUES (3, 'TAOLU', 'TAOLU', 2, 'Exo Taolu 1', 'Une description', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeAgs19U6GP04mttvxSAKmc_631I2zOjCHkGmtUnYsXt0Ze582hA');
-INSERT INTO exercise (id, dtype, type, categoryId, name, description, image) VALUES (4, 'TAOLU', 'TAOLU', 2, 'Exo Taolu 2', 'Une description', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeAgs19U6GP04mttvxSAKmc_631I2zOjCHkGmtUnYsXt0Ze582hA');
-INSERT INTO exercise (id, dtype, type, categoryId, name, description, image) VALUES (5, 'FIGHT', 'FIGHT', 2, 'Exo Fight 1', 'Une description', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeAgs19U6GP04mttvxSAKmc_631I2zOjCHkGmtUnYsXt0Ze582hA');
-INSERT INTO exercise (id, dtype, type, categoryId, name, description, image) VALUES (6, 'FIGHT', 'FIGHT', 2, 'Exo Fight 2', 'Une description', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeAgs19U6GP04mttvxSAKmc_631I2zOjCHkGmtUnYsXt0Ze582hA');
+INSERT INTO exercise (id, dtype, type, categoryId, name, description, measurementUnit, objective, image) VALUES (1, 'PHYSICAL', 'PHYSICAL', 1, 'Exercice Physique 1', 'Description exercice physique n°1', 'METER', 'MAXIMUM', 'http://de1.iconarchive.com/download/i61348/majdi-khawaja/kung-fu-panda/Po-3.ico');
+INSERT INTO exercise (id, dtype, type, categoryId, name, description, measurementUnit, objective, image) VALUES (2, 'PHYSICAL', 'PHYSICAL', 1, 'Exo Physique 2', 'La description du physique 2', 'SECOND', 'MINIMUM', 'https://freepngimg.com/download/kung_fu_panda/1-2-kung-fu-panda-fighting-png.png');
+INSERT INTO exercise (id, dtype, type, categoryId, name, description, image) VALUES (3, 'TAOLU', 'TAOLU', 2, 'Exercice Taolu 1', 'Voici la description de l exercice Taolu n°1', 'http://www.iconarchive.com/download/i61351/majdi-khawaja/kung-fu-panda/Po.ico');
+INSERT INTO exercise (id, dtype, type, categoryId, name, description, image) VALUES (4, 'TAOLU', 'TAOLU', 2, 'Exercice Taolu 2', 'Une description pour l exercice taolu 2', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSt5xTFwgOJ16PwdkVPNmlRvegjsA2hxFLAwSozFuvnm5uQY7C');
+INSERT INTO exercise (id, dtype, type, categoryId, name, description, image) VALUES (5, 'FIGHT', 'FIGHT', 2, 'Exercice Fight 1', 'Description exercice combat 1', 'http://aux4.iconspalace.com/uploads/7798440781491586594.png');
+INSERT INTO exercise (id, dtype, type, categoryId, name, description, image) VALUES (6, 'FIGHT', 'FIGHT', 2, 'Exercice Fight 2', 'La description du combat 2', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRW__xUrkOYSKT_Ys07Op6PeaeCdSVAoNCy1P2J8QpxCNbF3VTS');
 
 INSERT INTO criteria (id, name) VALUES (1, 'critère 1');
 INSERT INTO criteria (id, name) VALUES (2, 'critère 2');
@@ -39,55 +39,13 @@ INSERT INTO round_criteria (roundId, criteriaId) VALUES (2, 2);
 INSERT INTO round_criteria (roundId, criteriaId) VALUES (2, 3);
 INSERT INTO round_criteria (roundId, criteriaId) VALUES (3, 1);
 
-INSERT INTO rank (id, name, description, maximumScore, image) VALUES (1, 'Petit Panda', 'Une description', 100, 'https://i1.wp.com/www.getbeautified.com/wp-content/uploads/2018/07/How-to-Draw-a-Cartoon-Panda-21.png?fit=591%2C520&ssl=1');
-INSERT INTO rank (id, name, description, maximumScore, image) VALUES (2, 'Grand Tigre', 'Une description', 70, 'https://us.123rf.com/450wm/makstrv/makstrv1604/makstrv160400005/54905547-stock-vector-aggressive-tiger-face-sign-symbol-vector-illustration.jpg?ver=6');
-INSERT INTO rank (id, name, description, maximumScore, image) VALUES (3, 'Moyen Dragon', 'Une description', 150, 'https://friendlystock.com/wp-content/uploads/2018/05/9-cute-dragon-breathing-fire-cartoon-clipart.jpg');
+INSERT INTO rank (id, position, name, description, image) VALUES (1, 0, 'Petit Panda', 'Une description', 'https://www.searchpng.com/wp-content/uploads/2019/03/kung-fu-Panda-PNG.png');
+INSERT INTO rank (id, position, name, description, image) VALUES (2, 1, 'Grand Tigre', 'Une description', 'https://us.123rf.com/450wm/makstrv/makstrv1604/makstrv160400005/54905547-stock-vector-aggressive-tiger-face-sign-symbol-vector-illustration.jpg?ver=6');
+INSERT INTO rank (id, position, name, description, image) VALUES (3, 2, 'Moyen Dragon', 'Une description', 'https://friendlystock.com/wp-content/uploads/2018/05/9-cute-dragon-breathing-fire-cartoon-clipart.jpg');
 
-INSERT INTO rankExercise (id, dtype, rankId, exerciseId, coefficient) VALUES (1, 'TAOLU', 1, 3, 0.5);
-INSERT INTO rankExercise (id, dtype, rankId, exerciseId, coefficient) VALUES (2, 'TAOLU', 1, 4, 1.5);
-INSERT INTO rankExercise (id, dtype, rankId, exerciseId, coefficient) VALUES (3, 'PHYSICAL', 1, 1, 2.5);
-INSERT INTO rankExercise (id, dtype, rankId, exerciseId, coefficient) VALUES (4, 'PHYSICAL', 1, 2, 1.0);
-INSERT INTO rankExercise (id, dtype, rankId, exerciseId, coefficient) VALUES (5, 'FIGHT', 1, 5, 2.5);
-INSERT INTO rankExercise (id, dtype, rankId, exerciseId, coefficient) VALUES (6, 'FIGHT', 1, 6, 1.0);
-
-INSERT INTO rankCriteria (id, criteriaId, maximumScore, rankExerciseId) VALUES (1, 1, 5, 1);
-INSERT INTO rankCriteria (id, criteriaId, maximumScore, rankExerciseId) VALUES (2, 2, 10, 1);
-INSERT INTO rankCriteria (id, criteriaId, maximumScore, rankExerciseId) VALUES (3, 3, 3, 1);
-INSERT INTO rankCriteria (id, criteriaId, maximumScore, rankExerciseId) VALUES (4, 4, 4, 1);
-INSERT INTO rankCriteria (id, criteriaId, maximumScore, rankExerciseId) VALUES (5, 1, 5, 2);
-INSERT INTO rankCriteria (id, criteriaId, maximumScore, rankExerciseId) VALUES (6, 2, 10, 2);
-
-INSERT INTO rankRound (id, roundId, rankExerciseId) VALUES (1, 1, 5);
-INSERT INTO rankRound (id, roundId, rankExerciseId) VALUES (2, 2, 5);
-INSERT INTO rankRound (id, roundId, rankExerciseId) VALUES (3, 3, 5);
-INSERT INTO rankRound (id, roundId, rankExerciseId) VALUES (4, 2, 6);
-INSERT INTO rankRound (id, roundId, rankExerciseId) VALUES (5, 3, 6);
-
-INSERT INTO rankCriteria (id, criteriaId, maximumScore, rankRoundId) VALUES (7, 1, 5, 1);
-INSERT INTO rankCriteria (id, criteriaId, maximumScore, rankRoundId) VALUES (8, 2, 10, 1);
-INSERT INTO rankCriteria (id, criteriaId, maximumScore, rankRoundId) VALUES (9, 3, 3, 1);
-INSERT INTO rankCriteria (id, criteriaId, maximumScore, rankRoundId) VALUES (10, 4, 4, 1);
-INSERT INTO rankCriteria (id, criteriaId, maximumScore, rankRoundId) VALUES (11, 1, 5, 2);
-INSERT INTO rankCriteria (id, criteriaId, maximumScore, rankRoundId) VALUES (12, 2, 10, 2);
-INSERT INTO rankCriteria (id, criteriaId, maximumScore, rankRoundId) VALUES (13, 3, 3, 2);
-INSERT INTO rankCriteria (id, criteriaId, maximumScore, rankRoundId) VALUES (14, 1, 5, 3);
-INSERT INTO rankCriteria (id, criteriaId, maximumScore, rankRoundId) VALUES (15, 1, 5, 4);
-INSERT INTO rankCriteria (id, criteriaId, maximumScore, rankRoundId) VALUES (16, 2, 10, 4);
-INSERT INTO rankCriteria (id, criteriaId, maximumScore, rankRoundId) VALUES (17, 3, 3, 4);
-INSERT INTO rankCriteria (id, criteriaId, maximumScore, rankRoundId) VALUES (18, 1, 5, 5);
-
-INSERT INTO evaluation (id, name, date, address, city, postalCode, type) VALUES (1, 'Evaluation n°1', '2019-06-01', 'Rue Christian Pauc', 'Nantes', '44300', 'RANK');
-INSERT INTO evaluation (id, name, date, address, city, postalCode, type) VALUES (2, 'Evaluation n°2', '2019-01-01', 'Rue Christian Pauc', 'Nantes', '44300', 'OTHER');
-INSERT INTO evaluation (id, name, date, address, city, postalCode, type) VALUES (3, 'Evaluation n°3', '2019-03-01', 'Rue Christian Pauc', 'Nantes', '44300', 'OTHER');
-
-INSERT INTO evaluation_exercise (evaluationId, exerciseId) VALUES (1, 1);
-INSERT INTO evaluation_exercise (evaluationId, exerciseId) VALUES (1, 2);
-INSERT INTO evaluation_exercise (evaluationId, exerciseId) VALUES (1, 3);
-INSERT INTO evaluation_exercise (evaluationId, exerciseId) VALUES (1, 4);
-INSERT INTO evaluation_exercise (evaluationId, exerciseId) VALUES (1, 5);
-INSERT INTO evaluation_exercise (evaluationId, exerciseId) VALUES (1, 6);
-INSERT INTO evaluation_exercise (evaluationId, exerciseId) VALUES (2, 1);
-INSERT INTO evaluation_exercise (evaluationId, exerciseId) VALUES (3, 2);
+INSERT INTO test (id, dtype, type, name, date, address, city, postalCode) VALUES (1, 'RANK', 'RANK', 'Test n°1', '2019-06-29 14:00:00', 'Rue Christian Pauc', 'Nantes', '44300');
+INSERT INTO test (id, dtype, type, name, date, address, city, postalCode) VALUES (2, 'PROGRAM', 'PROGRAM', 'Test n°2', '2019-01-15 08:00:00', 'Rue Christian Pauc', 'Nantes', '44300');
+INSERT INTO test (id, dtype, type, name, date, address, city, postalCode) VALUES (3, 'PROGRAM', 'PROGRAM', 'Test n°3', '2019-03-01 15:00:00', 'Rue Christian Pauc', 'Nantes', '44300');
 
 INSERT INTO account (id, firstName, lastName, emailAddress, privilege) VALUES (1, 'Ximeng', 'Zhang', 'xz@polytech.com', 'NONE'), ;
 INSERT INTO account (id, firstName, lastName, emailAddress, privilege) VALUES (2, 'Tiphaine', 'Besnard', 'tb@polytech.com', 'NONE');
@@ -106,6 +64,6 @@ INSERT INTO member (id, accountId, groupId, rankId, firstName, lastName, emailAd
 INSERT INTO member (id, accountId, groupId, rankId, firstName, lastName, emailAddress) VALUES (5, 5, 2, 1, 'Matthieu', 'Perreira Da Silva', 'mpds@polytech.com');
 INSERT INTO member (id, accountId, groupId, rankId, firstName, lastName, emailAddress) VALUES (6, 6, 2, 1, 'Nassim', 'Berrichi', 'nb@polytech.com');
 
-INSERT INTO evaluation_group (evaluationId, groupId) VAlUES (1, 1);
-INSERT INTO evaluation_group (evaluationId, groupId) VAlUES (2, 2);
-INSERT INTO evaluation_group (evaluationId, groupId) VAlUES (3, 1);
+INSERT INTO test_group (testId, groupId) VAlUES (1, 1);
+INSERT INTO test_group (testId, groupId) VAlUES (2, 2);
+INSERT INTO test_group (testId, groupId) VAlUES (3, 1);
