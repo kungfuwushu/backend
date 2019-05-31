@@ -13,35 +13,27 @@ import lombok.Data;
 
 import javax.persistence.*;
 
-import static com.fasterxml.jackson.annotation.JsonTypeInfo.As.EXISTING_PROPERTY;
+import static com.fasterxml.jackson.annotation.JsonTypeInfo.As.PROPERTY;
 import static com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME;
 
 @Data
 @Entity
 @ApiModel
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@JsonTypeInfo(use = NAME, include = EXISTING_PROPERTY, property = "type", visible = true)
+@JsonTypeInfo(use = NAME, include = PROPERTY, property = "type", visible = true)
+@DiscriminatorColumn(name = "type")
 @JsonSubTypes({
         @JsonSubTypes.Type(value = Taolu.class, name = "TAOLU"),
         @JsonSubTypes.Type(value = Physical.class, name = "PHYSICAL"),
         @JsonSubTypes.Type(value = Fight.class, name = "FIGHT"),
 })
 public abstract class Exercise {
-    public enum Type {
-        PHYSICAL,
-        TAOLU,
-        FIGHT
-    }
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private String description;
     private String image;
-
-    @Enumerated(EnumType.STRING)
-    private Type type;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "categoryId", nullable = false)

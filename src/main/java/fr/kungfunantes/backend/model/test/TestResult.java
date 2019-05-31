@@ -4,7 +4,9 @@ import com.fasterxml.jackson.annotation.*;
 import fr.kungfunantes.backend.model.Group;
 import fr.kungfunantes.backend.model.Member;
 import fr.kungfunantes.backend.model.exercise.ExerciseResult;
+import fr.kungfunantes.backend.model.test.program.ProgramTest;
 import fr.kungfunantes.backend.model.test.program.ProgramTestResult;
+import fr.kungfunantes.backend.model.test.rank.RankTest;
 import fr.kungfunantes.backend.model.test.rank.RankTestResult;
 import io.swagger.annotations.ApiModel;
 import lombok.Data;
@@ -14,13 +16,13 @@ import java.util.List;
 
 import static com.fasterxml.jackson.annotation.JsonTypeInfo.As.PROPERTY;
 import static com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME;
-import static fr.kungfunantes.backend.model.test.Test.Type.*;
 
 @Data
 @Entity
 @ApiModel
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @JsonTypeInfo(use = NAME, include = PROPERTY, property = "type")
+@DiscriminatorColumn(name = "type")
 @JsonSubTypes({
         @JsonSubTypes.Type(value = RankTestResult.class, name = "RANK"),
         @JsonSubTypes.Type(value = ProgramTestResult.class, name = "PROGRAM"),
@@ -52,11 +54,11 @@ public abstract class TestResult {
 
     public static TestResult create(Test test, Member performer, Group performerGroup) {
         TestResult testResult = null;
-        if (test.getType() == RANK) {
+        if (test instanceof RankTest) {
             testResult = new RankTestResult();
             ((RankTestResult) testResult).setRank(performer.getRank());
         }
-        else if (test.getType() == PROGRAM)
+        else if (test instanceof ProgramTest)
             testResult = new ProgramTestResult();
 
         if (testResult != null) {

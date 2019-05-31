@@ -1,9 +1,6 @@
 package fr.kungfunantes.backend.model;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIdentityReference;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.annotation.*;
 import fr.kungfunantes.backend.utils.EntityIdResolver;
 import io.swagger.annotations.ApiModel;
 import lombok.Data;
@@ -42,7 +39,7 @@ public class Member {
     @JsonProperty("groupId")
     private Group group;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "rankId", nullable = false)
     @JsonIdentityReference(alwaysAsId = true)
     @JsonProperty("rankId")
