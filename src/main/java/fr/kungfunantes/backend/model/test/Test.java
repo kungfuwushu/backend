@@ -12,24 +12,20 @@ import javax.persistence.*;
 import java.util.Date;
 import java.util.Set;
 
-import static com.fasterxml.jackson.annotation.JsonTypeInfo.As.EXISTING_PROPERTY;
+import static com.fasterxml.jackson.annotation.JsonTypeInfo.As.PROPERTY;
 import static com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME;
 
 @Data
 @Entity
 @ApiModel
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@JsonTypeInfo(use = NAME, include = EXISTING_PROPERTY, property = "type", visible = true)
+@JsonTypeInfo(use = NAME, include = PROPERTY, property = "type", visible = true)
+@DiscriminatorColumn(name = "type")
 @JsonSubTypes({
         @JsonSubTypes.Type(value = RankTest.class, name = "RANK"),
         @JsonSubTypes.Type(value = ProgramTest.class, name = "PROGRAM"),
 })
 public abstract class Test {
-    public enum Type {
-        RANK,
-        PROGRAM
-    }
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -38,9 +34,6 @@ public abstract class Test {
     private String address;
     private String city;
     private String postalCode;
-
-    @Enumerated(EnumType.STRING)
-    private Type type;
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "test_group",

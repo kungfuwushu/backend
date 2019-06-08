@@ -18,7 +18,8 @@ import static com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME;
 @Entity
 @ApiModel
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@JsonTypeInfo(use = NAME, include = PROPERTY, property = "type")
+@JsonTypeInfo(use = NAME, include = PROPERTY, property = "type", visible = true)
+@DiscriminatorColumn(name = "type")
 @JsonSubTypes({
         @JsonSubTypes.Type(value = TaoluResult.class, name = "TAOLU"),
         @JsonSubTypes.Type(value = PhysicalResult.class, name = "PHYSICAL"),

@@ -9,6 +9,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
@@ -16,9 +17,10 @@ import javax.persistence.*;
 @ApiModel
 @DiscriminatorValue(value = "RANK")
 public class RankTestResult extends TestResult {
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "rankId", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "rankId")
     @JsonIdentityReference(alwaysAsId = true)
     @JsonProperty("rankId")
+    @NotNull
     private Rank rank;
 }

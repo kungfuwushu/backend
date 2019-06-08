@@ -1,9 +1,8 @@
 package fr.kungfunantes.backend.resource;
 
-import com.google.common.base.Preconditions;
+import fr.kungfunantes.backend.model.Program;
 import fr.kungfunantes.backend.model.Rank;
 import fr.kungfunantes.backend.repository.RankRepository;
-import fr.kungfunantes.backend.service.ExerciseScaleService;
 import fr.kungfunantes.backend.utils.RestPreconditions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,7 +17,7 @@ public class RankResource {
 	private RankRepository rankRepository;
 
 	@Autowired
-    private ExerciseScaleService exerciseScaleService;
+    private ProgramResource programResource;
 
     @GetMapping("/ranks")
     @ResponseBody
@@ -38,25 +37,6 @@ public class RankResource {
         return rankRepository.findAllByTestId(id);
     }
 
-    @PostMapping("/ranks")
-    @ResponseStatus(HttpStatus.CREATED)
-    @ResponseBody
-    public Rank create(@RequestBody Rank rank) {
-        rank.setPosition(rankRepository.findAll().size());
-        return Preconditions.checkNotNull(rankRepository.save(rank));
-    }
-
-    @PutMapping("/ranks")
-    @ResponseBody
-    public Rank update(@RequestBody Rank updatedRank) {
-        Rank rank = RestPreconditions.checkFound(rankRepository.findById(updatedRank.getId()));
-        updatedRank.setExercisesScales(exerciseScaleService.update(
-                rank.getExercisesScales(),
-                updatedRank.getExercisesScales()
-        ));
-        return Preconditions.checkNotNull(rankRepository.save(updatedRank));
-    }
-
     @PutMapping("/ranks/{id}/reorder")
     @ResponseStatus(HttpStatus.OK)
     public void reorder(
@@ -69,10 +49,23 @@ public class RankResource {
             ranks.get(i).setPosition(i);
         rankRepository.saveAll(ranks);
     }
- 
+
+    @PostMapping("/ranks")
+    @ResponseStatus(HttpStatus.CREATED)
+    @ResponseBody
+    public Program create(@RequestBody Rank rank) {
+        return programResource.create(rank);
+    }
+
+    @PutMapping("/ranks")
+    @ResponseBody
+    public Program update(@RequestBody Rank rank) {
+        return programResource.update(rank);
+    }
+
     @DeleteMapping("/ranks/{id}")
     @ResponseStatus(HttpStatus.OK)
     public void delete(@PathVariable("id") Long id) {
-        rankRepository.deleteById(id);
+        programResource.delete(id);
     }
 }
