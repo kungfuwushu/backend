@@ -2,6 +2,8 @@ package fr.kungfunantes.backend.resource;
 
 import fr.kungfunantes.backend.model.Profile;
 import fr.kungfunantes.backend.repository.ProfileRepository;
+import fr.kungfunantes.backend.security.CurrentUser;
+import fr.kungfunantes.backend.security.UserPrincipal;
 import fr.kungfunantes.backend.utils.RestPreconditions;
 import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
@@ -11,6 +13,7 @@ import org.springframework.data.domain.Example;
 import org.springframework.hateoas.Resource;
 import org.springframework.hateoas.mvc.ControllerLinkBuilder;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -79,7 +82,7 @@ public class ProfileResource {
 		return ResponseEntity.created(location).body(savedProfile);
 
 	}
-	
+
 	@PutMapping("/profile/{id}")
 	@ApiOperation(value = "Updates the profile with the given id with the provided parameters")
 	public ResponseEntity<Profile> updateProfile(@RequestBody Profile profile, @PathVariable long id) {
@@ -104,4 +107,20 @@ public class ProfileResource {
 		// return the updated value
 		return ResponseEntity.ok(updateProfile);
 	}
+
+    @GetMapping("/user/checkUsernameAvailability")
+    public Boolean checkUsernameAvailability(@RequestParam(value = "username") String username) {
+        return !profileRepository.existsByUsername(username);
+    }
+
+    @GetMapping("/user/checkEmailAvailability")
+    public Boolean checkEmailAvailability(@RequestParam(value = "email") String email) {
+        return !profileRepository.existsByEmail(email);
+    }
+
+    @GetMapping("/users/{username}")
+    public Optional<Profile> getUserProfile(@PathVariable(value = "username") String username) {
+        Optional<Profile> user = profileRepository.findByUsername(username);
+        return user;
+    }
 }
