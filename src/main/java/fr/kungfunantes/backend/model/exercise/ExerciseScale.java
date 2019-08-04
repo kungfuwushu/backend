@@ -8,14 +8,12 @@ import fr.kungfunantes.backend.model.exercise.fight.FightScale;
 import fr.kungfunantes.backend.model.exercise.physical.PhysicalScale;
 import fr.kungfunantes.backend.model.exercise.taolu.TaoluScale;
 import io.swagger.annotations.ApiModel;
-import lombok.Data;
 
 import javax.persistence.*;
 
 import static com.fasterxml.jackson.annotation.JsonTypeInfo.As.PROPERTY;
 import static com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME;
 
-@Data
 @Entity
 @ApiModel
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -52,4 +50,36 @@ public abstract class ExerciseScale {
 
     @Override
     public abstract boolean equals(Object o);
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public int getPosition() {
+        return position;
+    }
+
+    public void setPosition(int position) {
+        this.position = position;
+    }
+
+    public Exercise getExercise() {
+        return exercise;
+    }
+
+    public void setExercise(Exercise exercise) {
+        this.exercise = exercise;
+    }
+
+    public ExerciseScale getNewestVersion() {
+        return newestVersion;
+    }
+
+    public void setNewestVersion(ExerciseScale newestVersion) {
+        this.newestVersion = newestVersion;
+    }
 }

@@ -3,7 +3,6 @@ package fr.kungfunantes.backend.model.exercise.fight;
 import fr.kungfunantes.backend.model.exercise.ExerciseScale;
 import fr.kungfunantes.backend.model.round.RoundScale;
 import io.swagger.annotations.ApiModel;
-import lombok.Data;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
@@ -15,7 +14,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@Data
 @Entity
 @ApiModel
 @DiscriminatorValue(value = "FIGHT")
@@ -49,5 +47,13 @@ public class FightScale extends ExerciseScale {
                 return false;
         }
         return true;
+    }
+
+    public List<RoundScale> getRoundsScales() {
+        return roundsScales;
+    }
+
+    public void setRoundsScales(List<RoundScale> roundsScales) {
+        this.roundsScales = roundsScales;
     }
 }
