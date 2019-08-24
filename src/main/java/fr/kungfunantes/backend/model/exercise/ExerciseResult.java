@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import fr.kungfunantes.backend.model.exercise.fight.FightResult;
 import fr.kungfunantes.backend.model.exercise.physical.PhysicalResult;
 import fr.kungfunantes.backend.model.exercise.taolu.TaoluResult;
+import fr.kungfunantes.backend.model.exercise.theoretical.TheoreticalResult;
+
 import io.swagger.annotations.ApiModel;
 
 import javax.persistence.*;
@@ -21,7 +23,8 @@ import static com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME;
 @JsonSubTypes({
         @JsonSubTypes.Type(value = TaoluResult.class, name = "TAOLU"),
         @JsonSubTypes.Type(value = PhysicalResult.class, name = "PHYSICAL"),
-        @JsonSubTypes.Type(value = FightResult.class, name = "FIGHT")
+        @JsonSubTypes.Type(value = FightResult.class, name = "FIGHT"),
+        @JsonSubTypes.Type(value = TheoreticalResult.class, name = "THEORETICAL"),
 })
 public abstract class ExerciseResult {
     @Id

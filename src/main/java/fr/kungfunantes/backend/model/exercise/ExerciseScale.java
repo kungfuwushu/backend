@@ -7,6 +7,8 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import fr.kungfunantes.backend.model.exercise.fight.FightScale;
 import fr.kungfunantes.backend.model.exercise.physical.PhysicalScale;
 import fr.kungfunantes.backend.model.exercise.taolu.TaoluScale;
+import fr.kungfunantes.backend.model.exercise.theoretical.TheoreticalScale;
+
 import io.swagger.annotations.ApiModel;
 
 import javax.persistence.*;
@@ -23,6 +25,7 @@ import static com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME;
         @JsonSubTypes.Type(value = TaoluScale.class, name = "TAOLU"),
         @JsonSubTypes.Type(value = PhysicalScale.class, name = "PHYSICAL"),
         @JsonSubTypes.Type(value = FightScale.class, name = "FIGHT"),
+        @JsonSubTypes.Type(value = TheoreticalScale.class, name = "THEORETICAL"),
 })
 public abstract class ExerciseScale {
     @Id
