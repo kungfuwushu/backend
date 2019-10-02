@@ -2,12 +2,10 @@ package fr.kungfunantes.backend.model.round;
 
 import fr.kungfunantes.backend.model.criteria.Criteria;
 import io.swagger.annotations.ApiModel;
-import lombok.Data;
 
 import javax.persistence.*;
 import java.util.Set;
 
-@Data
 @Entity
 @ApiModel
 public class Round {
@@ -21,4 +19,20 @@ public class Round {
             inverseJoinColumns = @JoinColumn(name = "criteriaId")
     )
     private Set<Criteria> criterion;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Set<Criteria> getCriterion() {
+        return criterion;
+    }
+
+    public void setCriterion(Set<Criteria> criterion) {
+        this.criterion = criterion;
+    }
 }

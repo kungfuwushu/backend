@@ -2,12 +2,10 @@ package fr.kungfunantes.backend.model.round;
 
 import fr.kungfunantes.backend.model.criteria.CriteriaResult;
 import io.swagger.annotations.ApiModel;
-import lombok.Data;
 
 import javax.persistence.*;
 import java.util.List;
 
-@Data
 @Entity
 @ApiModel
 public class RoundResult {
@@ -21,4 +19,28 @@ public class RoundResult {
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "roundScaleId", nullable = false)
     private RoundScale roundScale;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public List<CriteriaResult> getCriterionResults() {
+        return criterionResults;
+    }
+
+    public void setCriterionResults(List<CriteriaResult> criterionResults) {
+        this.criterionResults = criterionResults;
+    }
+
+    public RoundScale getRoundScale() {
+        return roundScale;
+    }
+
+    public void setRoundScale(RoundScale roundScale) {
+        this.roundScale = roundScale;
+    }
 }

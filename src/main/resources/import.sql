@@ -7,6 +7,7 @@ INSERT INTO exercise (id, type, categoryId, name, description, image) VALUES (3,
 INSERT INTO exercise (id, type, categoryId, name, description, image) VALUES (4, 'TAOLU', 2, 'Exercice Taolu 2', 'Une description pour l exercice taolu 2', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSt5xTFwgOJ16PwdkVPNmlRvegjsA2hxFLAwSozFuvnm5uQY7C');
 INSERT INTO exercise (id, type, categoryId, name, description, image) VALUES (5, 'FIGHT', 2, 'Exercice Fight 1', 'Description exercice combat 1', 'http://aux4.iconspalace.com/uploads/7798440781491586594.png');
 INSERT INTO exercise (id, type, categoryId, name, description, image) VALUES (6, 'FIGHT', 2, 'Exercice Fight 2', 'La description du combat 2', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRW__xUrkOYSKT_Ys07Op6PeaeCdSVAoNCy1P2J8QpxCNbF3VTS');
+INSERT INTO exercise (id, type, categoryId, name, description, question, image) VALUES (7, 'THEORETICAL', 2, 'Exercice Theorique', 'La description de l exo','Quelle est la capitale de la Chine ?', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRW__xUrkOYSKT_Ys07Op6PeaeCdSVAoNCy1P2J8QpxCNbF3VTS');
 
 INSERT INTO criteria (id, name) VALUES (1, 'critère 1');
 INSERT INTO criteria (id, name) VALUES (2, 'critère 2');
@@ -51,7 +52,7 @@ INSERT INTO test (id, type, name, date, address, city, postalCode) VALUES (1, 'R
 INSERT INTO test (id, type, programId, name, date, address, city, postalCode) VALUES (2, 'PROGRAM', 5, 'Test n°2', '2019-01-15 08:00:00', 'Rue Christian Pauc', 'Nantes', '44300');
 INSERT INTO test (id, type, programId, name, date, address, city, postalCode) VALUES (3, 'PROGRAM', 4, 'Test n°3', '2019-03-01 15:00:00', 'Rue Christian Pauc', 'Nantes', '44300');
 
-INSERT INTO account (id, firstName, lastName, emailAddress, privilege) VALUES (1, 'Ximeng', 'Zhang', 'xz@polytech.com', 'NONE'), ;
+INSERT INTO account (id, firstName, lastName, emailAddress, privilege) VALUES (1, 'Ximeng', 'Zhang', 'xz@polytech.com', 'NONE');
 INSERT INTO account (id, firstName, lastName, emailAddress, privilege) VALUES (2, 'Tiphaine', 'Besnard', 'tb@polytech.com', 'NONE');
 INSERT INTO account (id, firstName, lastName, emailAddress, privilege) VALUES (3, 'Johan', 'Sorette', 'js@polytech.com', 'NONE');
 INSERT INTO account (id, firstName, lastName, emailAddress, privilege) VALUES (4, 'François-Régis', 'Jaunatre', 'frj@polytech.com', 'NONE');
