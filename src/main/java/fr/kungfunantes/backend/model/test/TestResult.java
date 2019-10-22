@@ -9,7 +9,6 @@ import fr.kungfunantes.backend.model.test.program.ProgramTestResult;
 import fr.kungfunantes.backend.model.test.rank.RankTest;
 import fr.kungfunantes.backend.model.test.rank.RankTestResult;
 import io.swagger.annotations.ApiModel;
-import lombok.Data;
 
 import javax.persistence.*;
 import java.util.List;
@@ -17,7 +16,6 @@ import java.util.List;
 import static com.fasterxml.jackson.annotation.JsonTypeInfo.As.PROPERTY;
 import static com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME;
 
-@Data
 @Entity
 @ApiModel
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -67,5 +65,45 @@ public abstract class TestResult {
             testResult.setPerformerGroup(performerGroup);
         }
         return testResult;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Member getPerformer() {
+        return performer;
+    }
+
+    public void setPerformer(Member performer) {
+        this.performer = performer;
+    }
+
+    public Group getPerformerGroup() {
+        return performerGroup;
+    }
+
+    public void setPerformerGroup(Group performerGroup) {
+        this.performerGroup = performerGroup;
+    }
+
+    public List<ExerciseResult> getExercisesResults() {
+        return exercisesResults;
+    }
+
+    public void setExercisesResults(List<ExerciseResult> exercisesResults) {
+        this.exercisesResults = exercisesResults;
+    }
+
+    public Test getTest() {
+        return test;
+    }
+
+    public void setTest(Test test) {
+        this.test = test;
     }
 }

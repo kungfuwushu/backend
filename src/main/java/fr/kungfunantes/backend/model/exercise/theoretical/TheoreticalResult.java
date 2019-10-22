@@ -1,4 +1,4 @@
-package fr.kungfunantes.backend.model.exercise.physical;
+package fr.kungfunantes.backend.model.exercise.theoretical;
 
 import fr.kungfunantes.backend.model.exercise.ExerciseResult;
 import io.swagger.annotations.ApiModel;
@@ -8,9 +8,10 @@ import javax.persistence.Entity;
 
 @Entity
 @ApiModel
-@DiscriminatorValue(value = "PHYSICAL")
-public class PhysicalResult extends ExerciseResult {
+@DiscriminatorValue(value = "THEORETICAL")
+public class TheoreticalResult extends ExerciseResult {
     private int score;
+    private String answer;
 
     public int getScore() {
         return score;
@@ -18,5 +19,13 @@ public class PhysicalResult extends ExerciseResult {
 
     public void setScore(int score) {
         this.score = score;
+    }
+
+    public String getAnswer() {
+        return answer;
+    }
+
+    public void setAnswer(String answer) {
+        this.answer = answer;
     }
 }

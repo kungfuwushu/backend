@@ -3,7 +3,6 @@ package fr.kungfunantes.backend.model.exercise.taolu;
 import fr.kungfunantes.backend.model.criteria.CriteriaScale;
 import fr.kungfunantes.backend.model.exercise.ExerciseScale;
 import io.swagger.annotations.ApiModel;
-import lombok.Data;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
@@ -15,7 +14,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@Data
 @Entity
 @ApiModel
 @DiscriminatorValue(value = "TAOLU")
@@ -49,5 +47,13 @@ public class TaoluScale extends ExerciseScale {
                 return false;
         }
         return true;
+    }
+
+    public List<CriteriaScale> getCriterionScales() {
+        return criterionScales;
+    }
+
+    public void setCriterionScales(List<CriteriaScale> criterionScales) {
+        this.criterionScales = criterionScales;
     }
 }

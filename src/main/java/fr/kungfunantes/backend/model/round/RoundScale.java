@@ -2,7 +2,6 @@ package fr.kungfunantes.backend.model.round;
 
 import fr.kungfunantes.backend.model.criteria.CriteriaScale;
 import io.swagger.annotations.ApiModel;
-import lombok.Data;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
@@ -11,7 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@Data
 @Entity
 @ApiModel
 public class RoundScale {
@@ -27,6 +25,7 @@ public class RoundScale {
     @JoinColumn(name = "roundId", nullable = false)
     private Round round;
 
+    @Override
     public RoundScale clone() {
         RoundScale roundScale = new RoundScale();
         roundScale.setCriterionScales(new ArrayList<>());
@@ -52,5 +51,29 @@ public class RoundScale {
                 return false;
         }
         return true;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public List<CriteriaScale> getCriterionScales() {
+        return criterionScales;
+    }
+
+    public void setCriterionScales(List<CriteriaScale> criterionScales) {
+        this.criterionScales = criterionScales;
+    }
+
+    public Round getRound() {
+        return round;
+    }
+
+    public void setRound(Round round) {
+        this.round = round;
     }
 }
