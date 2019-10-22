@@ -1,20 +1,10 @@
 package fr.kungfunantes.backend.security;
 
 public class ApiResponse {
-    private Boolean success;
     private String message;
 
-    public ApiResponse(Boolean success, String message) {
-        this.success = success;
+    public ApiResponse(String message) {
         this.message = message;
-    }
-
-    public Boolean getSuccess() {
-        return success;
-    }
-
-    public void setSuccess(Boolean success) {
-        this.success = success;
     }
 
     public String getMessage() {

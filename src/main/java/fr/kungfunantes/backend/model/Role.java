@@ -10,9 +10,8 @@ public class Role {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    public enum  RoleName {
-        ROLE_USER,
-        ROLE_ADMIN
+    public enum RoleName {
+        USER, ADMIN
     }
 
     @Enumerated(EnumType.STRING)

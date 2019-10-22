@@ -4,11 +4,11 @@ import javax.validation.constraints.*;
 
 public class SignUpRequest {
     @NotBlank
-    @Size(min = 3, max = 40)
+    @Size(min = 3, max = 30)
     private String firstname;
 
     @NotBlank
-    @Size(min = 3, max = 40)
+    @Size(min = 3, max = 30)
     private String lastname;
 
     @NotBlank
@@ -16,7 +16,7 @@ public class SignUpRequest {
     private String username;
 
     @NotBlank
-    @Size(max = 40)
+    @Size(max = 80)
     @Email
     private String email;
 
@@ -31,6 +31,7 @@ public class SignUpRequest {
     public void setFirstname(String name) {
         this.firstname = name;
     }
+
     public String getLastname() {
         return lastname;
     }
