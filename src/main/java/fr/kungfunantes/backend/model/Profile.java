@@ -46,8 +46,8 @@ public class Profile {
     private String email;
 
     @NotBlank
-    @Size(min = 6, message = "Password must be at least 6 characters")
-    @Size(max = 20, message = "Password must be at most 20 characters")
+    @Size(min = 10, message = "Password hash must be at least 10 characters")
+    @Size(max = 100, message = "Password hash must be at most 100 characters")
     private String password;
 
     @ManyToMany(fetch = FetchType.LAZY)

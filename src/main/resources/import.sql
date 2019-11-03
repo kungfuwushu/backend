@@ -73,5 +73,5 @@ INSERT INTO test_group (testId, groupId) VAlUES (1, 1);
 INSERT INTO test_group (testId, groupId) VAlUES (2, 2);
 INSERT INTO test_group (testId, groupId) VAlUES (3, 1);
 
-INSERT INTO roles(name) VALUES('ROLE_USER');
-INSERT INTO roles(name) VALUES('ROLE_ADMIN');
+INSERT INTO roles(name) VALUES('USER');
+INSERT INTO roles(name) VALUES('ADMIN');
