@@ -75,3 +75,5 @@ INSERT INTO test_group (testId, groupId) VAlUES (3, 1);
 
 INSERT INTO roles(name) VALUES('USER');
 INSERT INTO roles(name) VALUES('ADMIN');
+
+INSERT INTO PROFILE values(1, 'a@a.fr', 'a', 'a', '$2a$10$EblZqNptyYvcLm/VwDCVAuBjzZOI7khzdyGPBr08PpIi0na624b8.', 'a');

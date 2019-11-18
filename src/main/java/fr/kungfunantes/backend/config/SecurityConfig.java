@@ -53,6 +53,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+
+        // H2 web console need this
+        http.headers().frameOptions().sameOrigin();
+
         //@formatter:off
         http
                 .cors()
@@ -79,6 +83,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .antMatchers("/auth/**")
                         .permitAll()
                     .antMatchers("/user/checkUsernameAvailability", "/user/checkEmailAvailability")
+                        .permitAll()
+                // TODO remove H2 console public access
+                    .antMatchers("/h2-console/**")
                         .permitAll()
                     .antMatchers(HttpMethod.GET, "/groups/**", "/users/**")
                         .permitAll()

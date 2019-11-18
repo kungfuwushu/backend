@@ -17,6 +17,7 @@ import javax.persistence.*;
         resolver = EntityIdResolver.class,
         scope = Account.class)
 public class Account {
+
     public enum AccountPrivilege {
         TEACHER,
         NONE
@@ -31,10 +32,6 @@ public class Account {
 
     @Enumerated(EnumType.STRING)
     private AccountPrivilege privilege;
-
-    @Repository
-    public static interface AccountRepository extends JpaRepository<Account, Long> {
-    }
 
     public Long getId() {
         return id;
