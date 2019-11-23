@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class ExerciseResource {
@@ -32,16 +33,17 @@ public class ExerciseResource {
 	}
 
 	@ResponseBody
-	public String getType(@RequestParam Long id) {
-	    return exerciseRepository.findTypeById(id);
+	public Optional<Exercise> byId(@RequestParam long id) {
+			return exerciseRepository.findById(id);
 	}
 
 	@DeleteMapping("/exercises/{id}")
 	@ResponseStatus(HttpStatus.OK)
 	@Transactional
 	public void delete(@PathVariable("id") Long id) {
-			String exerciseType = getType(id);
-			switch(exerciseType) {
+			Optional<Exercise> exercise = byId(id);
+			//System.out.println(exercise);
+			/*switch(exerciseType) {
 				case "TAOLU":
 					exerciseCriteriaRepository.deleteById(id);
 					exerciseRepository.deleteById(id);
@@ -52,7 +54,7 @@ public class ExerciseResource {
 					break;
 				default:
 					exerciseRepository.deleteById(id);
-			}
+			}*/
 	}
 
 }
