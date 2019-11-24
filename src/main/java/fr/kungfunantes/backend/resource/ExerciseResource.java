@@ -42,7 +42,7 @@ public class ExerciseResource {
 	@Transactional
 	public void delete(@PathVariable("id") Long id) {
 			Optional<Exercise> exercise = byId(id);
-			//System.out.println(exercise);
+			System.out.println(exercise);
 			/*switch(exerciseType) {
 				case "TAOLU":
 					exerciseCriteriaRepository.deleteById(id);
