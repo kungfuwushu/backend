@@ -27,9 +27,10 @@ public class ExerciseResource {
 	@Autowired
 	private ExerciseRoundRepository exerciseRoundRepository;
 
-  @ResponseBody
-  public List<Exercise> all() {
-      return exerciseRepository.findAll();
+	@GetMapping("/exercises")
+	@ResponseBody
+	public List<Exercise> all() {
+			return exerciseRepository.findAll();
 	}
 
 	@ResponseBody
@@ -41,9 +42,8 @@ public class ExerciseResource {
 	@ResponseStatus(HttpStatus.OK)
 	@Transactional
 	public void delete(@PathVariable("id") Long id) {
-			Optional<Exercise> exercise = byId(id);
-			System.out.println(exercise);
-			/*switch(exerciseType) {
+			String exerciseType = byId(id).get().getType();
+			switch(exerciseType) {
 				case "TAOLU":
 					exerciseCriteriaRepository.deleteById(id);
 					exerciseRepository.deleteById(id);
@@ -54,7 +54,7 @@ public class ExerciseResource {
 					break;
 				default:
 					exerciseRepository.deleteById(id);
-			}*/
+			}
 	}
 
 }

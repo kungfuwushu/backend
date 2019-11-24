@@ -9,8 +9,8 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ExerciseRoundRepository extends JpaRepository<Round, Long>{
+public interface ExerciseRoundRepository extends JpaRepository<Exercise, Long>{
   @Modifying
-  @Query("delete from Round where id = :idDelete")
+  @Query("delete from ExerciseRound where exerciseId = :idDelete")
   public void deleteById(@Param("idDelete") Long idDelete);
 }

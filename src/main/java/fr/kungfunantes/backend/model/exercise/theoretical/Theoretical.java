@@ -18,4 +18,8 @@ public class Theoretical extends Exercise {
     public void setQuestion(String question) {
         this.question = question;
     }
+
+    public String getType() {
+      return "THEORETICAL";
+    }
 }
