@@ -105,8 +105,8 @@ public class ProfileResource {
 
 		// do the update
 		Profile updateProfile = optionalProfile.get();
-		updateProfile.setFirstname(profile.getFirstname());
-		updateProfile.setLastname(profile.getLastname());
+		updateProfile.setFirstName(profile.getFirstName());
+		updateProfile.setLastName(profile.getLastName());
 		profileRepository.save(updateProfile);
 
 		// return the updated value

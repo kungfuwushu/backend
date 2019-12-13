@@ -82,7 +82,7 @@ public class AuthResource {
         }
 
         // Creating user's account
-        Profile user = new Profile(signUpRequest.getFirstname(), signUpRequest.getLastname(), signUpRequest.getUsername(),
+        Profile user = new Profile(signUpRequest.getFirstName(), signUpRequest.getLastName(), signUpRequest.getUsername(),
                 signUpRequest.getEmail(), signUpRequest.getPassword());
 
         user.setPassword(passwordEncoder.encode(user.getPassword()));
