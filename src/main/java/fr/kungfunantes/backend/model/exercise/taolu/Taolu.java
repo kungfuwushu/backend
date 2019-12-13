@@ -2,27 +2,20 @@ package fr.kungfunantes.backend.model.exercise.taolu;
 
 import fr.kungfunantes.backend.model.criteria.Criteria;
 import fr.kungfunantes.backend.model.exercise.Exercise;
+import fr.kungfunantes.backend.model.exercise.ExerciseCriteria;
 import io.swagger.annotations.ApiModel;
 
 import javax.persistence.*;
-import java.util.Set;
+import java.util.List;
 
 @Entity
 @ApiModel
 @DiscriminatorValue(value = "TAOLU")
 public class Taolu extends Exercise {
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinTable(name = "exercise_criteria",
-            joinColumns = @JoinColumn(name = "exerciseId"),
-            inverseJoinColumns = @JoinColumn(name = "criteriaId")
-    )
-    private Set<Criteria> criterion;
+    @OneToMany
+    List<ExerciseCriteria> exerciseCriteria;
 
-    public Set<Criteria> getCriterion() {
-        return criterion;
-    }
-
-    public void setCriterion(Set<Criteria> criterion) {
-        this.criterion = criterion;
+    public String getType() {
+      return "TAOLU";
     }
 }

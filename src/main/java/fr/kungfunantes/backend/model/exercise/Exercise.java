@@ -90,4 +90,6 @@ public abstract class Exercise {
     public void setCategory(Category category) {
         this.category = category;
     }
+
+    public abstract String getType();
 }
