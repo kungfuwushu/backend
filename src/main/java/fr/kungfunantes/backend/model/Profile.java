@@ -6,6 +6,7 @@ import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -23,17 +24,17 @@ import io.swagger.annotations.ApiModelProperty;
 @ApiModel(description = "A Profile is allowed to connect to the application")
 public class Profile {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ApiModelProperty(notes = "Firstname should be between 2 characters and 30.")
-    @Size(min = 2, message = "Firstname must be at least 2 characters")
-    @Size(max = 30, message = "Firstname must be at most 30 characters")
-    private String firstname;
+    @ApiModelProperty(notes = "First name should be between 2 characters and 30.")
+    @Size(min = 2, message = "First name must be at least 2 characters")
+    @Size(max = 30, message = "First name must be at most 30 characters")
+    private String firstName;
 
-    @ApiModelProperty(notes = "Lastname should be between 2 characters and 20.")
-    @Size(max = 30, message = "Lastname must be at most 30 characters")
-    private String lastname;
+    @ApiModelProperty(notes = "Last name should be between 2 characters and 20.")
+    @Size(max = 30, message = "Last name must be at most 30 characters")
+    private String lastName;
 
     @ApiModelProperty(notes = "Username must be at most 15 characters.")
     @NotBlank
@@ -58,10 +59,10 @@ public class Profile {
         super();
     }
 
-    public Profile(String firstname, String lastname, String username, String email, String password) {
+    public Profile(String firstName, String lastName, String username, String email, String password) {
         super();
-        this.firstname = firstname;
-        this.lastname = lastname;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.username = username;
         this.email = email;
         this.password = password;
@@ -76,19 +77,19 @@ public class Profile {
     }
 
     public String getFirstName() {
-        return firstname;
+        return firstName;
     }
 
-    public void setFirstName(String firstname) {
-        this.firstname = firstname;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
     public String getLastName() {
-        return lastname;
+        return lastName;
     }
 
-    public void setLastName(String lastname) {
-        this.lastname = lastname;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getUsername() {
