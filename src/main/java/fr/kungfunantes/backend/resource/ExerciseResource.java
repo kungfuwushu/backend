@@ -33,8 +33,9 @@ public class ExerciseResource {
 			return exerciseRepository.findAll();
 	}
 
+	@GetMapping("/exercises/{id}")
 	@ResponseBody
-	public Optional<Exercise> byId(@RequestParam long id) {
+	public Optional<Exercise> byId(@PathVariable("id") Long id) {
 			return exerciseRepository.findById(id);
 	}
 
@@ -42,6 +43,7 @@ public class ExerciseResource {
 	@ResponseStatus(HttpStatus.OK)
 	@Transactional
 	public void delete(@PathVariable("id") Long id) {
+		System.out.println("COUCOU");
 			String exerciseType = byId(id).get().getType();
 			switch(exerciseType) {
 				case "TAOLU":
