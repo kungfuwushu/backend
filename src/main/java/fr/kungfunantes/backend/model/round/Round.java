@@ -1,9 +1,11 @@
 package fr.kungfunantes.backend.model.round;
 
 import fr.kungfunantes.backend.model.criteria.Criteria;
+import fr.kungfunantes.backend.model.exercise.ExerciseRound;
 import io.swagger.annotations.ApiModel;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -12,6 +14,9 @@ public class Round {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @OneToMany
+    List<ExerciseRound> exerciseRound;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(name = "round_criteria",

@@ -24,19 +24,19 @@ public class SignUpRequest {
     @Size(min = 6, max = 20)
     private String password;
 
-    public String getFirstname() {
+    public String getFirstName() {
         return firstname;
     }
 
-    public void setFirstname(String name) {
+    public void setFirstName(String name) {
         this.firstname = name;
     }
 
-    public String getLastname() {
+    public String getLastName() {
         return lastname;
     }
 
-    public void setLastname(String name) {
+    public void setLastName(String name) {
         this.lastname = name;
     }
 

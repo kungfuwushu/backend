@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+
 import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
@@ -17,9 +18,8 @@ public class UserPrincipal implements UserDetails {
     private static final long serialVersionUID = 1L;
 
     private Long id;
-
-    private String name;
-
+    private String firstName;
+    private String lastName;
     private String username;
 
     @JsonIgnore
@@ -30,9 +30,10 @@ public class UserPrincipal implements UserDetails {
 
     private Collection<? extends GrantedAuthority> authorities;
 
-    public UserPrincipal(Long id, String name, String username, String email, String password, Collection<? extends GrantedAuthority> authorities) {
+    public UserPrincipal(Long id, String firstName, String lastName, String username, String email, String password, Collection<? extends GrantedAuthority> authorities) {
         this.id = id;
-        this.name = name;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.username = username;
         this.email = email;
         this.password = password;
@@ -46,7 +47,8 @@ public class UserPrincipal implements UserDetails {
 
         return new UserPrincipal(
                 user.getId(),
-                user.getLastname(),
+                user.getFirstName(),
+                user.getLastName(),
                 user.getUsername(),
                 user.getEmail(),
                 user.getPassword(),
@@ -58,8 +60,12 @@ public class UserPrincipal implements UserDetails {
         return id;
     }
 
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastname() {
+        return lastName;
     }
 
     public String getEmail() {

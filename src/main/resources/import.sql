@@ -14,22 +14,22 @@ INSERT INTO criteria (id, name) VALUES (2, 'critère 2');
 INSERT INTO criteria (id, name) VALUES (3, 'critère 3');
 INSERT INTO criteria (id, name) VALUES (4, 'critère 4');
 
-INSERT INTO exercise_criteria (exerciseId, criteriaId) VALUES (3, 1);
-INSERT INTO exercise_criteria (exerciseId, criteriaId) VALUES (3, 2);
-INSERT INTO exercise_criteria (exerciseId, criteriaId) VALUES (3, 3);
-INSERT INTO exercise_criteria (exerciseId, criteriaId) VALUES (3, 4);
-INSERT INTO exercise_criteria (exerciseId, criteriaId) VALUES (4, 1);
-INSERT INTO exercise_criteria (exerciseId, criteriaId) VALUES (4, 2);
+INSERT INTO exerciseCriteria (exerciseId, criteriaId) VALUES (3, 1);
+INSERT INTO exerciseCriteria (exerciseId, criteriaId) VALUES (3, 2);
+INSERT INTO exerciseCriteria (exerciseId, criteriaId) VALUES (3, 3);
+INSERT INTO exerciseCriteria (exerciseId, criteriaId) VALUES (3, 4);
+INSERT INTO exerciseCriteria (exerciseId, criteriaId) VALUES (4, 1);
+INSERT INTO exerciseCriteria (exerciseId, criteriaId) VALUES (4, 2);
 
 INSERT INTO round (id) VALUES (1);
 INSERT INTO round (id) VALUES (2);
 INSERT INTO round (id) VALUES (3);
 
-INSERT INTO exercise_round (exerciseId, roundId) VALUES (5, 1);
-INSERT INTO exercise_round (exerciseId, roundId) VALUES (5, 2);
-INSERT INTO exercise_round (exerciseId, roundId) VALUES (5, 3);
-INSERT INTO exercise_round (exerciseId, roundId) VALUES (6, 2);
-INSERT INTO exercise_round (exerciseId, roundId) VALUES (6, 3);
+INSERT INTO exerciseRound (exerciseId, roundId) VALUES (5, 1);
+INSERT INTO exerciseRound (exerciseId, roundId) VALUES (5, 2);
+INSERT INTO exerciseRound (exerciseId, roundId) VALUES (5, 3);
+INSERT INTO exerciseRound (exerciseId, roundId) VALUES (6, 2);
+INSERT INTO exerciseRound (exerciseId, roundId) VALUES (6, 3);
 
 INSERT INTO round_criteria (roundId, criteriaId) VALUES (1, 1);
 INSERT INTO round_criteria (roundId, criteriaId) VALUES (1, 2);
@@ -75,3 +75,5 @@ INSERT INTO test_group (testId, groupId) VAlUES (3, 1);
 
 INSERT INTO roles(name) VALUES('USER');
 INSERT INTO roles(name) VALUES('ADMIN');
+
+INSERT INTO PROFILE values(1, 'a@a.fr', 'a', 'a', '$2a$10$EblZqNptyYvcLm/VwDCVAuBjzZOI7khzdyGPBr08PpIi0na624b8.', 'a');

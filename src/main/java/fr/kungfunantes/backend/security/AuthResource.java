@@ -24,6 +24,8 @@ import fr.kungfunantes.backend.repository.RoleRepository;
 import javax.validation.Valid;
 import java.net.URI;
 import java.util.Collections;
+import java.util.Map;
+import java.util.HashMap;
 
 @RestController
 @RequestMapping("/auth")
@@ -57,7 +59,13 @@ public class AuthResource {
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
         String jwt = tokenProvider.generateToken(authentication);
-        return ResponseEntity.ok(new JwtAuthenticationResponse(jwt));
+
+        // create response
+        Map response = new HashMap();
+        response.put("token", new JwtAuthenticationResponse(jwt));
+        response.put("user", (UserPrincipal) authentication.getPrincipal()); // get signed in user
+
+        return ResponseEntity.ok(response);
     }
 
     @SuppressWarnings({"unchecked", "rawtypes"})
@@ -74,7 +82,7 @@ public class AuthResource {
         }
 
         // Creating user's account
-        Profile user = new Profile(signUpRequest.getFirstname(), signUpRequest.getLastname(), signUpRequest.getUsername(),
+        Profile user = new Profile(signUpRequest.getFirstName(), signUpRequest.getLastName(), signUpRequest.getUsername(),
                 signUpRequest.getEmail(), signUpRequest.getPassword());
 
         user.setPassword(passwordEncoder.encode(user.getPassword()));

@@ -3,7 +3,6 @@ package fr.kungfunantes.backend.security;
 import fr.kungfunantes.backend.model.Profile;
 import fr.kungfunantes.backend.repository.ProfileRepository;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -17,6 +16,7 @@ public class CustomUserDetailsService implements UserDetailsService {
     @Autowired
     ProfileRepository userRepository;
 
+    // redefined UserDetailsService loadUserByUsername method
     @Override
     @Transactional
     public UserDetails loadUserByUsername(String usernameOrEmail)

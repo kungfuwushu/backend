@@ -5,3 +5,16 @@ This project aims at providing the backend services to be used to support a spor
 Testing data is declared in `import.sql`.
 
 To load data on first start or to reset data with defaults, change `spring.jpa.hibernate.ddl-auto` property value (in `application.properties`) with either `create` or `create-drop`.
+
+## Installation
+
+### Requirements
+
+- Java
+- Meaven
+
+### Installation
+
+1. Clone or Download this repository.
+2. Enter the repository.
+3. Run server : `mvn spring-boot:run`

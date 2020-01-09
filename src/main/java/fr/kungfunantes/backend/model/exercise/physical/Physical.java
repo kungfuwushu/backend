@@ -43,4 +43,8 @@ public class Physical extends Exercise {
     public void setMeasurementUnit(MeasurementUnit measurementUnit) {
         this.measurementUnit = measurementUnit;
     }
+
+    public String getType() {
+      return "PHYSICAL";
+    }
 }
