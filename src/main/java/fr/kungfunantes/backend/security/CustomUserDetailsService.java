@@ -14,29 +14,28 @@ import org.springframework.transaction.annotation.Transactional;
 public class CustomUserDetailsService implements UserDetailsService {
 
     @Autowired
-    ProfileRepository userRepository;
+    ProfileRepository profileRepository;
 
     // redefined UserDetailsService loadUserByUsername method
     @Override
     @Transactional
-    public UserDetails loadUserByUsername(String usernameOrEmail)
+    public UserDetails loadUserByUsername(String username)
             throws UsernameNotFoundException {
         // Let people login with either username or email
-        Profile user = userRepository.findByUsernameOrEmail(usernameOrEmail, usernameOrEmail)
-                .orElseThrow(() ->
-                        new UsernameNotFoundException("User not found with username or email : " + usernameOrEmail)
-        );
+        Profile profile = profileRepository.findByUsername(username)
+          // .orElse(() -> Account account = accountRepository.findByEmail(usernameOrEmail))
+            .orElseThrow(() -> new UsernameNotFoundException("User not found with username : " + username));
 
-        return UserPrincipal.create(user);
+        return UserPrincipal.create(profile);
     }
 
     // This method is used by JWTAuthenticationFilter
     @Transactional
     public UserDetails loadUserById(Long id) {
-        Profile user = userRepository.findById(id).orElseThrow(
+        Profile profile = profileRepository.findById(id).orElseThrow(
             () -> new UsernameNotFoundException("User not found with id : " + id)
         );
 
-        return UserPrincipal.create(user);
+        return UserPrincipal.create(profile);
     }
 }

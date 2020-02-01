@@ -16,9 +16,11 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import fr.kungfunantes.backend.exception.*;
 import fr.kungfunantes.backend.model.Profile;
-import fr.kungfunantes.backend.repository.ProfileRepository;
+import fr.kungfunantes.backend.model.Account;
 import fr.kungfunantes.backend.model.Role;
 import fr.kungfunantes.backend.model.Role.RoleName;
+import fr.kungfunantes.backend.repository.ProfileRepository;
+import fr.kungfunantes.backend.repository.AccountRepository;
 import fr.kungfunantes.backend.repository.RoleRepository;
 
 import javax.validation.Valid;
@@ -35,7 +37,10 @@ public class AuthResource {
     AuthenticationManager authenticationManager;
 
     @Autowired
-    ProfileRepository userRepository;
+    ProfileRepository profileRepository;
+
+    @Autowired
+    AccountRepository accountRepository;
 
     @Autowired
     RoleRepository roleRepository;
@@ -51,7 +56,7 @@ public class AuthResource {
 
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
-                        loginRequest.getUsernameOrEmail(),
+                        loginRequest.getEmail(),
                         loginRequest.getPassword()
                 )
         );
@@ -68,35 +73,43 @@ public class AuthResource {
         return ResponseEntity.ok(response);
     }
 
+    // create new account
     @SuppressWarnings({"unchecked", "rawtypes"})
     @PostMapping("/signup")
     public ResponseEntity<?> registerUser(@Valid @RequestBody SignUpRequest signUpRequest) {
-        if(userRepository.existsByUsername(signUpRequest.getUsername())) {
-            return new ResponseEntity(new ApiResponse("Username is already taken!"),
-                    HttpStatus.BAD_REQUEST);
-        }
 
-        if(userRepository.existsByEmail(signUpRequest.getEmail())) {
+        // check if email is available
+        if(accountRepository.existsByEmail(signUpRequest.getEmail())) {
             return new ResponseEntity(new ApiResponse("Email Address already in use!"),
                     HttpStatus.BAD_REQUEST);
         }
 
-        // Creating user's account
-        Profile user = new Profile(signUpRequest.getFirstName(), signUpRequest.getLastName(), signUpRequest.getUsername(),
-                signUpRequest.getEmail(), signUpRequest.getPassword());
+        // check if username is available
+        if(profileRepository.existsByUsername(signUpRequest.getUsername())) {
+            return new ResponseEntity(new ApiResponse("Username is already taken!"),
+                    HttpStatus.BAD_REQUEST);
+        }
 
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
+
+        // Create new account
+        Account newAccount = new Account(signUpRequest.getEmail(), signUpRequest.getPassword());
+        newAccount.setPassword(passwordEncoder.encode(newAccount.getPassword()));
+
+        // Create new profile
+        Profile newProfile = new Profile(signUpRequest.getFirstName(), signUpRequest.getLastName(), signUpRequest.getUsername());
+
 
         Role userRole = roleRepository.findByName(RoleName.USER)
                 .orElseThrow(() -> new AppException("User Role not set."));
 
-        user.setRoles(Collections.singleton(userRole));
+        // user.setRoles(Collections.singleton(userRole));
 
-        Profile result = userRepository.save(user);
+        Account createdAccount = accountRepository.save(newAccount);
+        Profile createdProfile = profileRepository.save(newProfile);
 
         URI location = ServletUriComponentsBuilder
                 .fromCurrentContextPath().path("/users/{username}")
-                .buildAndExpand(result.getUsername()).toUri();
+                .buildAndExpand(createdProfile.getUsername()).toUri();
 
         return ResponseEntity.created(location).body(new ApiResponse("User registered successfully"));
     }

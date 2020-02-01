@@ -10,9 +10,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ProfileRepository extends JpaRepository<Profile, Long>{
-    Optional<Profile> findByEmail(String email);
-
-    Optional<Profile> findByUsernameOrEmail(String username, String email);
 
     List<Profile> findByIdIn(List<Long> userIds);
 
@@ -20,5 +17,4 @@ public interface ProfileRepository extends JpaRepository<Profile, Long>{
 
     Boolean existsByUsername(String username);
 
-    Boolean existsByEmail(String email);
 }

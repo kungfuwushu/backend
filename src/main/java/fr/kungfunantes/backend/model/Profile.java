@@ -1,23 +1,17 @@
 package fr.kungfunantes.backend.model;
 
-import java.util.HashSet;
-import java.util.Set;
-
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.validation.constraints.Email;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
-import org.hibernate.annotations.NaturalId;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @ApiModel(description = "A Profile is allowed to connect to the application")
@@ -40,15 +34,11 @@ public class Profile {
     @Size(max = 15, message = "Username must be at most 15 characters")
     private String username;
 
-    @NaturalId
-    @Size(max = 80, message = "Email must be at most 80 characters")
-    @Email
-    private String email;
-
-    @NotBlank
-    @Size(min = 10, message = "Password hash must be at least 10 characters")
-    @Size(max = 100, message = "Password hash must be at most 100 characters")
-    private String password;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "accountId")
+    @JsonIdentityReference(alwaysAsId = true)
+    @JsonProperty("accountId")
+    private Account account;
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
@@ -58,13 +48,11 @@ public class Profile {
         super();
     }
 
-    public Profile(String firstname, String lastname, String username, String email, String password) {
+    public Profile(String firstname, String lastname, String username) {
         super();
         this.firstname = firstname;
         this.lastname = lastname;
         this.username = username;
-        this.email = email;
-        this.password = password;
     }
 
     public Long getId() {
@@ -100,19 +88,11 @@ public class Profile {
     }
 
     public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
+        return account.getEmail();
     }
 
     public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
+        return account.getPassword();
     }
 
     public Set<Role> getRoles() {
@@ -122,5 +102,6 @@ public class Profile {
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
+
 
 }

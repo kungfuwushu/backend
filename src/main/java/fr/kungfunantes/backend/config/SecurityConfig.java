@@ -25,7 +25,7 @@ import fr.kungfunantes.backend.security.JwtAuthenticationFilter;
 @EnableGlobalMethodSecurity(securedEnabled = true, jsr250Enabled = true, prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
-    CustomUserDetailsService customUserDetailsService;
+    CustomUserDetailsService CustomUserDetailsService;
 
     @Autowired
     private JwtAuthenticationEntryPoint unauthorizedHandler;
@@ -37,7 +37,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
-        authenticationManagerBuilder.userDetailsService(customUserDetailsService).passwordEncoder(getPasswordEncoder());
+        authenticationManagerBuilder.userDetailsService(CustomUserDetailsService).passwordEncoder(getPasswordEncoder());
     }
 
     @Bean(BeanIds.AUTHENTICATION_MANAGER)
@@ -95,6 +95,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         // Add our custom JWT security filter
         http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
+
 
     }
 }

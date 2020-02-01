@@ -52,22 +52,8 @@ INSERT INTO test (id, type, name, date, address, city, postalCode) VALUES (1, 'R
 INSERT INTO test (id, type, programId, name, date, address, city, postalCode) VALUES (2, 'PROGRAM', 5, 'Test n°2', '2019-01-15 08:00:00', 'Rue Christian Pauc', 'Nantes', '44300');
 INSERT INTO test (id, type, programId, name, date, address, city, postalCode) VALUES (3, 'PROGRAM', 4, 'Test n°3', '2019-03-01 15:00:00', 'Rue Christian Pauc', 'Nantes', '44300');
 
-INSERT INTO account (id, firstName, lastName, emailAddress, privilege) VALUES (1, 'Ximeng', 'Zhang', 'xz@polytech.com', 'NONE');
-INSERT INTO account (id, firstName, lastName, emailAddress, privilege) VALUES (2, 'Tiphaine', 'Besnard', 'tb@polytech.com', 'NONE');
-INSERT INTO account (id, firstName, lastName, emailAddress, privilege) VALUES (3, 'Johan', 'Sorette', 'js@polytech.com', 'NONE');
-INSERT INTO account (id, firstName, lastName, emailAddress, privilege) VALUES (4, 'François-Régis', 'Jaunatre', 'frj@polytech.com', 'NONE');
-INSERT INTO account (id, firstName, lastName, emailAddress, privilege) VALUES (5, 'Matthieu', 'Perreira Da Silva', 'mpds@polytech.com', 'TEACHER');
-INSERT INTO account (id, firstName, lastName, emailAddress, privilege) VALUES (6, 'Nassim', 'Berrichi', 'nb@polytech.com', 'TEACHER');
-
 INSERT INTO group_table (id, name) VALUES (1, 'Groupe 1');
 INSERT INTO group_table (id, name) VALUES (2, 'Groupe 2');
-
-INSERT INTO member (id, accountId, groupId, rankId, firstName, lastName, emailAddress) VALUES (1, 1, 1, 1, 'Ximeng', 'Zhang', 'xz@polytech.com');
-INSERT INTO member (id, accountId, groupId, rankId, firstName, lastName, emailAddress) VALUES (2, 2, 1, 1, 'Tiphaine', 'Besnard', 'tb@polytech.com');
-INSERT INTO member (id, accountId, groupId, rankId, firstName, lastName, emailAddress) VALUES (3, 3, 1, 1, 'Johan', 'Sorette', 'js@polytech.com');
-INSERT INTO member (id, accountId, groupId, rankId, firstName, lastName, emailAddress) VALUES (4, 4, 2, 1, 'François-Régis', 'Jaunatre', 'frj@polytech.com');
-INSERT INTO member (id, accountId, groupId, rankId, firstName, lastName, emailAddress) VALUES (5, 5, 2, 1, 'Matthieu', 'Perreira Da Silva', 'mpds@polytech.com');
-INSERT INTO member (id, accountId, groupId, rankId, firstName, lastName, emailAddress) VALUES (6, 6, 2, 1, 'Nassim', 'Berrichi', 'nb@polytech.com');
 
 INSERT INTO test_group (testId, groupId) VAlUES (1, 1);
 INSERT INTO test_group (testId, groupId) VAlUES (2, 2);
@@ -76,4 +62,20 @@ INSERT INTO test_group (testId, groupId) VAlUES (3, 1);
 INSERT INTO roles(name) VALUES('USER');
 INSERT INTO roles(name) VALUES('ADMIN');
 
-INSERT INTO PROFILE values(1, 'a@a.fr', 'a', 'a', '$2a$10$EblZqNptyYvcLm/VwDCVAuBjzZOI7khzdyGPBr08PpIi0na624b8.', 'a');
+
+INSERT INTO ACCOUNT (id, email, password) VALUES (1, 'a@a.fr', '$2a$10$EblZqNptyYvcLm/VwDCVAuBjzZOI7khzdyGPBr08PpIi0na624b8.');
+
+  INSERT INTO PROFILE (id, firstname, lastname, username, accountId) values(1, 'Alexis', 'Aigueparse', 'M. San Ping', 1);
+    INSERT INTO MEMBER (id, profileId, groupId, rankId) VALUES (1, 1, 1, 1);
+
+  INSERT INTO PROFILE (id, firstname, lastname, username, accountId) values(2, 'Jonas', 'Delannoy', 'Oogway', 1);
+    INSERT INTO MEMBER (id, profileId, groupId, rankId) VALUES (2, 2, 1, 1);
+
+  INSERT INTO PROFILE (id, firstname, lastname, username, accountId) values(3, 'Gabrielle', 'De Massol', 'Taï Lung', 1);
+    INSERT INTO MEMBER (id, profileId, groupId, rankId) VALUES (3, 3, 2, 2);
+
+
+INSERT INTO ACCOUNT (id, email, password) VALUES (2, 'b@b.fr', '$2a$10$EblZqNptyYvcLm/VwDCVAuBjzZOI7khzdyGPBr08PpIi0na624b8.');
+
+  INSERT INTO PROFILE (id, firstname, lastname, username, accountId) values(4, 'Gregoire', 'Langlois', 'Shifu', 2);
+    INSERT INTO MEMBER (id, profileId, groupId, rankId) VALUES (4, 4, 2, 3);
