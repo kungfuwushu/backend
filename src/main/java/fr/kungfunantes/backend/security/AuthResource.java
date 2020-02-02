@@ -18,16 +18,22 @@ import fr.kungfunantes.backend.exception.*;
 import fr.kungfunantes.backend.model.Profile;
 import fr.kungfunantes.backend.model.Account;
 import fr.kungfunantes.backend.model.Role;
+import fr.kungfunantes.backend.model.Rank;
+import fr.kungfunantes.backend.model.Member;
 import fr.kungfunantes.backend.model.Role.RoleName;
 import fr.kungfunantes.backend.repository.ProfileRepository;
+import fr.kungfunantes.backend.repository.MemberRepository;
 import fr.kungfunantes.backend.repository.AccountRepository;
+import fr.kungfunantes.backend.repository.RankRepository;
 import fr.kungfunantes.backend.repository.RoleRepository;
 
 import javax.validation.Valid;
 import java.net.URI;
 import java.util.Collections;
 import java.util.Map;
+import java.util.List;
 import java.util.HashMap;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/auth")
@@ -37,10 +43,16 @@ public class AuthResource {
     AuthenticationManager authenticationManager;
 
     @Autowired
+    AccountRepository accountRepository;
+
+    @Autowired
     ProfileRepository profileRepository;
 
     @Autowired
-    AccountRepository accountRepository;
+    RankRepository rankRepository;
+
+    @Autowired
+    MemberRepository memberRepository;
 
     @Autowired
     RoleRepository roleRepository;
@@ -78,34 +90,49 @@ public class AuthResource {
     @PostMapping("/signup")
     public ResponseEntity<?> registerUser(@Valid @RequestBody SignUpRequest signUpRequest) {
 
-        // check if email is available
-        if(accountRepository.existsByEmail(signUpRequest.getEmail())) {
-            return new ResponseEntity(new ApiResponse("Email Address already in use!"),
-                    HttpStatus.BAD_REQUEST);
-        }
-
         // check if username is available
-        if(profileRepository.existsByUsername(signUpRequest.getUsername())) {
+        if (profileRepository.existsByUsername(signUpRequest.getUsername())) {
             return new ResponseEntity(new ApiResponse("Username is already taken!"),
                     HttpStatus.BAD_REQUEST);
         }
 
-
-        // Create new account
-        Account newAccount = new Account(signUpRequest.getEmail(), signUpRequest.getPassword());
-        newAccount.setPassword(passwordEncoder.encode(newAccount.getPassword()));
+        // check if email is available
+        Account account;
+        if (accountRepository.existsByEmail(signUpRequest.getEmail())) {
+            // get account if it exists
+            Optional<Account> optionalAccount = accountRepository.findByEmail(signUpRequest.getEmail());
+            account = optionalAccount.get();
+        } else {
+          // Create new account
+          account = new Account(
+            signUpRequest.getEmail(),
+            passwordEncoder.encode(signUpRequest.getPassword())
+          );
+          accountRepository.save(account);
+        }
 
         // Create new profile
-        Profile newProfile = new Profile(signUpRequest.getFirstName(), signUpRequest.getLastName(), signUpRequest.getUsername());
-
-
+        Profile newProfile = new Profile(
+          signUpRequest.getFirstName(),
+          signUpRequest.getLastName(),
+          signUpRequest.getUsername(),
+          account
+        );
+        // set up roles
         Role userRole = roleRepository.findByName(RoleName.USER)
                 .orElseThrow(() -> new AppException("User Role not set."));
-
-        // user.setRoles(Collections.singleton(userRole));
-
-        Account createdAccount = accountRepository.save(newAccount);
+        newProfile.setRoles(Collections.singleton(userRole));
         Profile createdProfile = profileRepository.save(newProfile);
+
+        // create Member with rank 1
+        List<Rank> ranks = rankRepository.findByOrderByPositionAsc();
+        Rank rank = ranks.get(0);
+        Member newMember = new Member(
+          newProfile,
+          rank
+        );
+        memberRepository.save(newMember);
+
 
         URI location = ServletUriComponentsBuilder
                 .fromCurrentContextPath().path("/users/{username}")

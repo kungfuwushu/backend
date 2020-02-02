@@ -17,15 +17,16 @@ import java.util.Set;
 @ApiModel(description = "A Profile is allowed to connect to the application")
 public class Profile {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ApiModelProperty(notes = "Firstname should be between 2 characters and 30.")
-    @Size(min = 2, message = "Firstname must be at least 2 characters")
+    @ApiModelProperty(notes = "Firstname must be at most 30.")
+    @NotBlank
     @Size(max = 30, message = "Firstname must be at most 30 characters")
     private String firstname;
 
     @ApiModelProperty(notes = "Lastname should be between 2 characters and 20.")
+    @NotBlank
     @Size(max = 30, message = "Lastname must be at most 30 characters")
     private String lastname;
 
@@ -48,11 +49,12 @@ public class Profile {
         super();
     }
 
-    public Profile(String firstname, String lastname, String username) {
+    public Profile(String firstname, String lastname, String username, Account account) {
         super();
         this.firstname = firstname;
         this.lastname = lastname;
         this.username = username;
+        this.account = account;
     }
 
     public Long getId() {

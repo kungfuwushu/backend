@@ -31,8 +31,8 @@ public class Member {
     @JsonProperty("profileId")
     private Profile profile;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "groupId", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY, optional = true)
+    @JoinColumn(name = "groupId", nullable = true)
     @JsonIdentityReference(alwaysAsId = true)
     @JsonProperty("groupId")
     private Group group;
@@ -42,6 +42,12 @@ public class Member {
     @JsonIdentityReference(alwaysAsId = true)
     @JsonProperty("rankId")
     private Rank rank;
+
+    public Member(Profile profile, Rank rank) {
+      this.profile = profile;
+      this.group = null;
+      this.rank = rank;
+    }
 
     public Long getId() {
         return id;
