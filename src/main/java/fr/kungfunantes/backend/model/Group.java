@@ -22,7 +22,7 @@ public class Group {
     private Long id;
     private String name;
 
-    @OneToMany(mappedBy = "group", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "group")
     private List<Member> members;
 
     public Long getId() {
