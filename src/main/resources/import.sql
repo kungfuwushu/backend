@@ -2,13 +2,13 @@ INSERT INTO CATEGORY (id, name) VALUES (1, 'Catégorie 1');
 INSERT INTO CATEGORY (id, name) VALUES (2, 'Catégorie 2');
 
 
-INSERT INTO EXERCICE (id, type, categoryId, name, description, measurementUnit, objective, image) VALUES (1, 'PHYSICAL', 1, 'Exercice Physique 1', 'Description exercice physique n°1', 'METER', 'MAXIMUM', 'http://de1.iconarchive.com/download/i61348/majdi-khawaja/kung-fu-panda/Po-3.ico');
-INSERT INTO EXERCICE (id, type, categoryId, name, description, measurementUnit, objective, image) VALUES (2, 'PHYSICAL', 1, 'Exo Physique 2', 'La description du physique 2', 'SECOND', 'MINIMUM', 'https://freepngimg.com/download/kung_fu_panda/1-2-kung-fu-panda-fighting-png.png');
-INSERT INTO EXERCICE (id, type, categoryId, name, description, image) VALUES (3, 'TAOLU', 2, 'Exercice Taolu 1', 'Voici la description de l exercice Taolu n°1', 'http://www.iconarchive.com/download/i61351/majdi-khawaja/kung-fu-panda/Po.ico');
-INSERT INTO EXERCICE (id, type, categoryId, name, description, image) VALUES (4, 'TAOLU', 2, 'Exercice Taolu 2', 'Une description pour l exercice taolu 2', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSt5xTFwgOJ16PwdkVPNmlRvegjsA2hxFLAwSozFuvnm5uQY7C');
-INSERT INTO EXERCICE (id, type, categoryId, name, description, image) VALUES (5, 'FIGHT', 2, 'Exercice Fight 1', 'Description exercice combat 1', 'http://aux4.iconspalace.com/uploads/7798440781491586594.png');
-INSERT INTO EXERCICE (id, type, categoryId, name, description, image) VALUES (6, 'FIGHT', 2, 'Exercice Fight 2', 'La description du combat 2', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRW__xUrkOYSKT_Ys07Op6PeaeCdSVAoNCy1P2J8QpxCNbF3VTS');
-INSERT INTO EXERCICE (id, type, categoryId, name, description, question, image) VALUES (7, 'THEORETICAL', 2, 'Exercice Theorique', 'La description de l exo','Quelle est la capitale de la Chine ?', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRW__xUrkOYSKT_Ys07Op6PeaeCdSVAoNCy1P2J8QpxCNbF3VTS');
+INSERT INTO EXERCISE (id, type, categoryId, name, description, measurementUnit, objective, image) VALUES (1, 'PHYSICAL', 1, 'Exercice Physique 1', 'Description exercice physique n°1', 'METER', 'MAXIMUM', 'http://de1.iconarchive.com/download/i61348/majdi-khawaja/kung-fu-panda/Po-3.ico');
+INSERT INTO EXERCISE (id, type, categoryId, name, description, measurementUnit, objective, image) VALUES (2, 'PHYSICAL', 1, 'Exo Physique 2', 'La description du physique 2', 'SECOND', 'MINIMUM', 'https://freepngimg.com/download/kung_fu_panda/1-2-kung-fu-panda-fighting-png.png');
+INSERT INTO EXERCISE (id, type, categoryId, name, description, image) VALUES (3, 'TAOLU', 2, 'Exercice Taolu 1', 'Voici la description de l exercice Taolu n°1', 'http://www.iconarchive.com/download/i61351/majdi-khawaja/kung-fu-panda/Po.ico');
+INSERT INTO EXERCISE (id, type, categoryId, name, description, image) VALUES (4, 'TAOLU', 2, 'Exercice Taolu 2', 'Une description pour l exercice taolu 2', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSt5xTFwgOJ16PwdkVPNmlRvegjsA2hxFLAwSozFuvnm5uQY7C');
+INSERT INTO EXERCISE (id, type, categoryId, name, description, image) VALUES (5, 'FIGHT', 2, 'Exercice Fight 1', 'Description exercice combat 1', 'http://aux4.iconspalace.com/uploads/7798440781491586594.png');
+INSERT INTO EXERCISE (id, type, categoryId, name, description, image) VALUES (6, 'FIGHT', 2, 'Exercice Fight 2', 'La description du combat 2', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRW__xUrkOYSKT_Ys07Op6PeaeCdSVAoNCy1P2J8QpxCNbF3VTS');
+INSERT INTO EXERCISE (id, type, categoryId, name, description, question, image) VALUES (7, 'THEORETICAL', 2, 'Exercice Theorique', 'La description de l exo','Quelle est la capitale de la Chine ?', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRW__xUrkOYSKT_Ys07Op6PeaeCdSVAoNCy1P2J8QpxCNbF3VTS');
 
 
 INSERT INTO CRITERIA (id, name) VALUES (1, 'critère 1');
