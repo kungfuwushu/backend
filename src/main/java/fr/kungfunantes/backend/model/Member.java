@@ -28,7 +28,7 @@ public class Member {
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "profileId", nullable = false)
     @JsonIdentityReference(alwaysAsId = true)
-    @JsonProperty("profileId")
+    @JsonProperty("profile")
     private Profile profile;
 
     @ManyToOne(fetch = FetchType.EAGER, optional = true)
@@ -40,7 +40,7 @@ public class Member {
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "rankId", nullable = false)
     @JsonIdentityReference(alwaysAsId = true)
-    @JsonProperty("rankId")
+    @JsonProperty("rank")
     private Rank rank;
 
     public Member() {}
