@@ -23,12 +23,12 @@ public class Profile {
     @ApiModelProperty(notes = "Firstname must be at most 30.")
     @NotBlank
     @Size(max = 30, message = "Firstname must be at most 30 characters")
-    private String firstname;
+    private String firstName;
 
     @ApiModelProperty(notes = "Lastname should be between 2 characters and 20.")
     @NotBlank
     @Size(max = 30, message = "Lastname must be at most 30 characters")
-    private String lastname;
+    private String lastName;
 
     @ApiModelProperty(notes = "Username must be at most 15 characters.")
     @NotBlank

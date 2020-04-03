@@ -5,11 +5,11 @@ import javax.validation.constraints.*;
 public class SignUpRequest {
     @NotBlank
     @Size(max = 30)
-    private String firstname;
+    private String firstName;
 
     @NotBlank
     @Size(max = 30)
-    private String lastname;
+    private String lastName;
 
     @NotBlank
     @Size(max = 15)

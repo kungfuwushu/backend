@@ -93,10 +93,5 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .and()
                       .addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);        // Add our custom JWT security filter
 
-        //@formatter:on
-
-        //http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
-
-
     }
 }
