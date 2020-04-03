@@ -33,8 +33,9 @@ public class ExerciseResource {
 			return exerciseRepository.findAll();
 	}
 
+	@GetMapping("/exercises/{id}")
 	@ResponseBody
-	public Optional<Exercise> byId(@RequestParam long id) {
+	public Optional<Exercise> byId(@PathVariable("id") Long id) {
 			return exerciseRepository.findById(id);
 	}
 

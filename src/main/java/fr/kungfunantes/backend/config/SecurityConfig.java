@@ -25,7 +25,7 @@ import fr.kungfunantes.backend.security.JwtAuthenticationFilter;
 @EnableGlobalMethodSecurity(securedEnabled = true, jsr250Enabled = true, prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
-    CustomUserDetailsService customUserDetailsService;
+    CustomUserDetailsService CustomUserDetailsService;
 
     @Autowired
     private JwtAuthenticationEntryPoint unauthorizedHandler;
@@ -37,7 +37,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
-        authenticationManagerBuilder.userDetailsService(customUserDetailsService).passwordEncoder(getPasswordEncoder());
+        authenticationManagerBuilder.userDetailsService(CustomUserDetailsService).passwordEncoder(getPasswordEncoder());
     }
 
     @Bean(BeanIds.AUTHENTICATION_MANAGER)
@@ -84,17 +84,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         .permitAll()
                     .antMatchers("/user/checkUsernameAvailability", "/user/checkEmailAvailability")
                         .permitAll()
-                // TODO remove H2 console public access
                     .antMatchers("/h2-console/**")
                         .permitAll()
                     .antMatchers(HttpMethod.GET, "/groups/**", "/users/**")
                         .permitAll()
                     .anyRequest()
-                        .authenticated();
+                        .authenticated()
+                    .and()
+                      .addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);        // Add our custom JWT security filter
+
         //@formatter:on
 
-        // Add our custom JWT security filter
-        http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
+        //http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
+
 
     }
 }

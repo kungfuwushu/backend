@@ -2,11 +2,18 @@ package fr.kungfunantes.backend.model;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import fr.kungfunantes.backend.utils.EntityIdResolver;
+
 import io.swagger.annotations.ApiModel;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+import org.hibernate.annotations.NaturalId;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+import javax.validation.constraints.Email;
 import javax.persistence.*;
 
 @Entity
@@ -18,20 +25,30 @@ import javax.persistence.*;
         scope = Account.class)
 public class Account {
 
-    public enum AccountPrivilege {
-        TEACHER,
-        NONE
-    }
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String firstName;
-    private String lastName;
-    private String emailAddress;
 
-    @Enumerated(EnumType.STRING)
-    private AccountPrivilege privilege;
+    @NotBlank
+    @Size(min = 10, message = "Password hash must be at least 10 characters")
+    @Size(max = 100, message = "Password hash must be at most 100 characters")
+    private String password;
+
+    @NotBlank
+    @NaturalId
+    @Size(max = 80, message = "Email must be at most 80 characters")
+    @Email
+    private String email;
+
+    public Account() {
+      super();
+    }
+
+    public Account(String email, String password) {
+      super();
+      this.email = email;
+      this.password = password;
+    }
 
     public Long getId() {
         return id;
@@ -41,35 +58,20 @@ public class Account {
         this.id = id;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getEmail() {
+        return email;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getPassword() {
+        return this.password;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public String getEmailAddress() {
-        return emailAddress;
-    }
-
-    public void setEmailAddress(String emailAddress) {
-        this.emailAddress = emailAddress;
-    }
-
-    public AccountPrivilege getPrivilege() {
-        return privilege;
-    }
-
-    public void setPrivilege(AccountPrivilege privilege) {
-        this.privilege = privilege;
-    }
 }
