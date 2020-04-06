@@ -25,7 +25,7 @@ import fr.kungfunantes.backend.security.JwtAuthenticationFilter;
 @EnableGlobalMethodSecurity(securedEnabled = true, jsr250Enabled = true, prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
-    CustomUserDetailsService CustomUserDetailsService;
+    CustomUserDetailsService customUserDetailsService;
 
     @Autowired
     private JwtAuthenticationEntryPoint unauthorizedHandler;
