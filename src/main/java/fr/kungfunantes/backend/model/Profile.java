@@ -49,7 +49,7 @@ public class Profile {
         super();
     }
 
-    public Profile(String firstname, String lastname, String username, Account account) {
+    public Profile(String firstName, String lastName, String username, Account account) {
         super();
         this.firstName = firstName;
         this.lastName = lastName;
