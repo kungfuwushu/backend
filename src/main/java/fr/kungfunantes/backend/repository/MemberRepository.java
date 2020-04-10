@@ -5,6 +5,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -18,4 +20,16 @@ public interface MemberRepository extends JpaRepository<Member, Long>{
 
     @Query("select m from Member m, Test t join t.groups g where t.id = :testId and m.group.id = g.id")
     public List<Member> findByTestId(@Param("testId") Long testId);
+
+    @Transactional
+    @Modifying(clearAutomatically = true)
+    @Query("update Member set groupId = :groupId where id = :memberId")
+    public int updateMemberGroup(@Param("memberId") Long memberId, @Param("groupId") Long groupId);
+
+    @Transactional
+    @Modifying(clearAutomatically = true)
+    @Query("update Member set groupId = NULL where id = :memberId")
+    public int deleteMemberGroup(@Param("memberId") Long memberId);
+
+
 }

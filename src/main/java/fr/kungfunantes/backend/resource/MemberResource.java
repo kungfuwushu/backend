@@ -5,6 +5,7 @@ import fr.kungfunantes.backend.repository.MemberRepository;
 import fr.kungfunantes.backend.utils.RestPreconditions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -39,5 +40,17 @@ public class MemberResource {
     @ResponseBody
 	public List<Member> byTestId(@PathVariable long id) {
         return memberRepository.findByTestId(id);
+	}
+
+	@PutMapping("/member/{memberId}/group-update/{groupId}")
+	@ResponseBody
+	public int updateGroup(@PathVariable long memberId, @PathVariable long groupId) {
+		return memberRepository.updateMemberGroup(memberId, groupId);
+	}
+
+	@PutMapping("/member/{memberId}/delete-group")
+	@ResponseBody
+	public int deleteGroup(@PathVariable long memberId) {
+		return memberRepository.deleteMemberGroup(memberId);
 	}
 }
