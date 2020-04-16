@@ -43,7 +43,6 @@ public class ExerciseResource {
 	@ResponseStatus(HttpStatus.OK)
 	@Transactional
 	public void delete(@PathVariable("id") Long id) {
-		System.out.println("COUCOU");
 			String exerciseType = byId(id).get().getType();
 			switch(exerciseType) {
 				case "TAOLU":

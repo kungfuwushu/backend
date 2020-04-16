@@ -1,12 +1,15 @@
 package fr.kungfunantes.backend.security;
 
 import fr.kungfunantes.backend.model.Profile;
+import fr.kungfunantes.backend.repository.ProfileRepository;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.Optional;
 import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
@@ -15,26 +18,19 @@ import java.util.stream.Collectors;
 
 public class UserPrincipal implements UserDetails {
 
+    @Autowired
+    private static ProfileRepository profileRepository;
+
     private static final long serialVersionUID = 1L;
 
     private Long id;
-    private String firstName;
-    private String lastName;
-    private String username;
-
-    @JsonIgnore
     private String email;
-
-    @JsonIgnore
     private String password;
 
     private Collection<? extends GrantedAuthority> authorities;
 
-    public UserPrincipal(Long id, String firstName, String lastName, String username, String email, String password, Collection<? extends GrantedAuthority> authorities) {
+    public UserPrincipal(Long id, String email, String password, Collection<? extends GrantedAuthority> authorities) {
         this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.username = username;
         this.email = email;
         this.password = password;
         this.authorities = authorities;
@@ -47,9 +43,6 @@ public class UserPrincipal implements UserDetails {
 
         return new UserPrincipal(
                 user.getId(),
-                user.getFirstName(),
-                user.getLastName(),
-                user.getUsername(),
                 user.getEmail(),
                 user.getPassword(),
                 authorities
@@ -60,12 +53,9 @@ public class UserPrincipal implements UserDetails {
         return id;
     }
 
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public String getLastname() {
-        return lastName;
+    @Override
+    public String getPassword() {
+        return password;
     }
 
     public String getEmail() {
@@ -74,12 +64,8 @@ public class UserPrincipal implements UserDetails {
 
     @Override
     public String getUsername() {
-        return username;
-    }
-
-    @Override
-    public String getPassword() {
-        return password;
+        // return email instead of username because Spring need a username but account has not
+        return email;
     }
 
     @Override
@@ -120,4 +106,5 @@ public class UserPrincipal implements UserDetails {
 
         return Objects.hash(id);
     }
+
 }

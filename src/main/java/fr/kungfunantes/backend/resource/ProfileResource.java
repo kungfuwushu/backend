@@ -25,7 +25,9 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import fr.kungfunantes.backend.model.Profile;
+import fr.kungfunantes.backend.model.Account;
 import fr.kungfunantes.backend.repository.ProfileRepository;
+import fr.kungfunantes.backend.repository.AccountRepository;
 import fr.kungfunantes.backend.utils.RestPreconditions;
 import io.swagger.annotations.ApiOperation;
 
@@ -37,6 +39,9 @@ public class ProfileResource {
 
 	@Autowired
 	private ProfileRepository profileRepository;
+
+	@Autowired
+	private AccountRepository accountRepository;
 
 	@GetMapping("/profile")
 	public List<Profile> retrieveAllProfiles() {
@@ -120,7 +125,7 @@ public class ProfileResource {
 
     @GetMapping("/user/checkEmailAvailability")
     public Boolean checkEmailAvailability(@RequestParam(value = "email") String email) {
-        return !profileRepository.existsByEmail(email);
+        return !accountRepository.existsByEmail(email);
     }
 
     @GetMapping("/users/{username}")

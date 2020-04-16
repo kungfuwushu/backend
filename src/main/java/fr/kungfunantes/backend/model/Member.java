@@ -21,21 +21,18 @@ public class Member {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String firstName;
-    private String lastName;
-    private String emailAddress;
     private Date birthDate;
     private String motivation;
     private String image;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "accountId", nullable = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "profileId", nullable = false)
     @JsonIdentityReference(alwaysAsId = true)
-    @JsonProperty("accountId")
-    private Account account;
+    @JsonProperty("profile")
+    private Profile profile;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "groupId", nullable = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = true)
+    @JoinColumn(name = "groupId", nullable = true)
     @JsonIdentityReference(alwaysAsId = true)
     @JsonProperty("groupId")
     private Group group;
@@ -43,8 +40,16 @@ public class Member {
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "rankId", nullable = false)
     @JsonIdentityReference(alwaysAsId = true)
-    @JsonProperty("rankId")
+    @JsonProperty("rank")
     private Rank rank;
+
+    public Member() {}
+
+    public Member(Profile profile, Rank rank) {
+      this.profile = profile;
+      this.group = null;
+      this.rank = rank;
+    }
 
     public Long getId() {
         return id;
@@ -52,30 +57,6 @@ public class Member {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getEmailAddress() {
-        return emailAddress;
-    }
-
-    public void setEmailAddress(String emailAddress) {
-        this.emailAddress = emailAddress;
     }
 
     public Date getBirthDate() {
@@ -102,12 +83,12 @@ public class Member {
         this.image = image;
     }
 
-    public Account getAccount() {
-        return account;
+    public Profile getProfile() {
+        return profile;
     }
 
-    public void setAccount(Account account) {
-        this.account = account;
+    public void setProfile(Profile profile) {
+        this.profile = profile;
     }
 
     public Group getGroup() {

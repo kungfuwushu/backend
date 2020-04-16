@@ -4,10 +4,9 @@ import fr.kungfunantes.backend.model.Group;
 import fr.kungfunantes.backend.repository.GroupRepository;
 import fr.kungfunantes.backend.utils.RestPreconditions;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.http.HttpStatus;
+import com.google.common.base.Preconditions;
 
 import java.util.List;
 
@@ -27,6 +26,19 @@ public class GroupResource {
     @ResponseBody
 	public Group byId(@PathVariable long id) {
         return RestPreconditions.checkFound(groupRepository.findById(id));
+	}
+
+	@PostMapping("/groups")
+	@ResponseStatus(HttpStatus.CREATED)
+	@ResponseBody
+	public Group create(@RequestBody Group group) {
+		return Preconditions.checkNotNull(groupRepository.save(group));
+
+	}
+
+	@DeleteMapping("/group/{id}")
+	public void deleteGroup(@PathVariable long id) {
+		groupRepository.deleteById(id);
 	}
 
     @GetMapping("/tests/{id}/groups")

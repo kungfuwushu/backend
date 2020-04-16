@@ -8,6 +8,7 @@ import fr.kungfunantes.backend.repository.ExerciseScaleRepository;
 import fr.kungfunantes.backend.repository.ProgramRepository;
 import fr.kungfunantes.backend.utils.RestPreconditions;
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 

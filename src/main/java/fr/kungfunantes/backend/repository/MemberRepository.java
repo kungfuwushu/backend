@@ -10,7 +10,7 @@ import java.util.List;
 
 @Repository
 public interface MemberRepository extends JpaRepository<Member, Long>{
-    @Query("select m from Member m where m.account.id = :accountId")
+    @Query("select m from Member m, Profile p where m.profile.id = p.id and p.account.id = :accountId")
     public List<Member> findByAccountId(@Param("accountId") Long accountId);
 
     @Query("select m from Member m where m.group.id = :groupId")
