@@ -78,21 +78,21 @@ INSERT INTO ROLES (name) VALUES ('ADMIN');
 
 INSERT INTO ACCOUNT (id, email, password) VALUES (1, 'dev@poly.fr', '$2a$10$EblZqNptyYvcLm/VwDCVAuBjzZOI7khzdyGPBr08PpIi0na624b8.');
 
-  INSERT INTO PROFILE (id, firstname, lastname, username, accountId) values(1, 'Alexis', 'Aigueparse', 'M. San Ping', 1);
+  INSERT INTO PROFILE (id, firstName, lastName, username, accountId) values(1, 'Alexis', 'Aigueparse', 'M. San Ping', 1);
     INSERT INTO MEMBER (id, profileId, groupId, rankId) VALUES (1, 1, 1, 1);
     INSERT INTO USER_ROLES (user_id, role_id) VALUES (1, 2)
 
-  INSERT INTO PROFILE (id, firstname, lastname, username, accountId) values(2, 'Jonas', 'Delannoy', 'Oogway', 1);
+  INSERT INTO PROFILE (id, firstName, lastName, username, accountId) values(2, 'Jonas', 'Delannoy', 'Oogway', 1);
     INSERT INTO MEMBER (id, profileId, groupId, rankId) VALUES (2, 2, 1, 1);
     INSERT INTO USER_ROLES (user_id, role_id) VALUES (2, 2)
 
-  INSERT INTO PROFILE (id, firstname, lastname, username, accountId) values(3, 'Gabrielle', 'De Massol', 'Taï Lung', 1);
+  INSERT INTO PROFILE (id, firstName, lastName, username, accountId) values(3, 'Gabrielle', 'De Massol', 'Taï Lung', 1);
     INSERT INTO MEMBER (id, profileId, groupId, rankId) VALUES (3, 3, 2, 2);
     INSERT INTO USER_ROLES (user_id, role_id) VALUES (3, 2)
 
 
 INSERT INTO ACCOUNT (id, email, password) VALUES (2, 'a@test.fr', '$2a$10$EblZqNptyYvcLm/VwDCVAuBjzZOI7khzdyGPBr08PpIi0na624b8.');
 
-  INSERT INTO PROFILE (id, firstname, lastname, username, accountId) values(4, 'Gregoire', 'Langlois', 'Shifu', 2);
+  INSERT INTO PROFILE (id, firstName, lastName, username, accountId) values(4, 'Gregoire', 'Langlois', 'Shifu', 2);
     INSERT INTO MEMBER (id, profileId, groupId, rankId) VALUES (4, 4, 2, 3);
     INSERT INTO USER_ROLES (user_id, role_id) VALUES (4, 1)

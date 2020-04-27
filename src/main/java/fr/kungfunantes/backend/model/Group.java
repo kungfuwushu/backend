@@ -2,6 +2,9 @@ package fr.kungfunantes.backend.model;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import fr.kungfunantes.backend.utils.EntityIdResolver;
 import io.swagger.annotations.ApiModel;
 
@@ -22,7 +25,8 @@ public class Group {
     private Long id;
     private String name;
 
-    @OneToMany(mappedBy = "group", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "group")
+    @JsonProperty("members")
     private List<Member> members;
 
     public Long getId() {

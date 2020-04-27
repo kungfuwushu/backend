@@ -23,12 +23,12 @@ public class Profile {
     @ApiModelProperty(notes = "Firstname must be at most 30.")
     @NotBlank
     @Size(max = 30, message = "Firstname must be at most 30 characters")
-    private String firstname;
+    private String firstName;
 
     @ApiModelProperty(notes = "Lastname should be between 2 characters and 20.")
     @NotBlank
     @Size(max = 30, message = "Lastname must be at most 30 characters")
-    private String lastname;
+    private String lastName;
 
     @ApiModelProperty(notes = "Username must be at most 15 characters.")
     @NotBlank
@@ -49,10 +49,10 @@ public class Profile {
         super();
     }
 
-    public Profile(String firstname, String lastname, String username, Account account) {
+    public Profile(String firstName, String lastName, String username, Account account) {
         super();
-        this.firstname = firstname;
-        this.lastname = lastname;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.username = username;
         this.account = account;
     }
@@ -66,19 +66,19 @@ public class Profile {
     }
 
     public String getFirstName() {
-        return firstname;
+        return firstName;
     }
 
-    public void setFirstName(String firstname) {
-        this.firstname = firstname;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
     public String getLastName() {
-        return lastname;
+        return lastName;
     }
 
-    public void setLastName(String lastname) {
-        this.lastname = lastname;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getUsername() {

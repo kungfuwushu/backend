@@ -25,13 +25,13 @@ public class Member {
     private String motivation;
     private String image;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "profileId", nullable = false)
     @JsonIdentityReference(alwaysAsId = true)
-    @JsonProperty("profileId")
+    @JsonProperty("profile")
     private Profile profile;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = true)
+    @ManyToOne(fetch = FetchType.EAGER, optional = true)
     @JoinColumn(name = "groupId", nullable = true)
     @JsonIdentityReference(alwaysAsId = true)
     @JsonProperty("groupId")
@@ -40,8 +40,10 @@ public class Member {
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "rankId", nullable = false)
     @JsonIdentityReference(alwaysAsId = true)
-    @JsonProperty("rankId")
+    @JsonProperty("rank")
     private Rank rank;
+
+    public Member() {}
 
     public Member(Profile profile, Rank rank) {
       this.profile = profile;
