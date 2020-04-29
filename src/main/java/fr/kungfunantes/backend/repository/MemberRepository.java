@@ -27,9 +27,18 @@ public interface MemberRepository extends JpaRepository<Member, Long>{
     public int updateMemberGroup(@Param("memberId") Long memberId, @Param("groupId") Long groupId);
 
     @Transactional
+    @Modifying
+    @Query("update Member set groupId = null where groupId = :groupId")
+    public int updateMemberGroupDeleted(@Param("groupId") Long id);
+
+    @Transactional
     @Modifying(clearAutomatically = true)
     @Query("update Member set groupId = NULL where id = :memberId")
     public int deleteMemberGroup(@Param("memberId") Long memberId);
 
+    @Transactional
+    @Modifying
+    @Query("update Member set groupId = NULL where groupId = :groupId")
+    public int removeGroup(@Param("groupId") Long groupId);
 
 }

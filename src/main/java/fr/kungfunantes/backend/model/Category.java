@@ -25,7 +25,7 @@ public class Category {
     private String description;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "group_id")
+    @JoinColumn(name = "parent_category_id")
     @JsonIdentityReference(alwaysAsId = true)
     @JsonProperty("parentCategoryId")
     private Category parent;

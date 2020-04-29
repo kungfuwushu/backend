@@ -1,5 +1,8 @@
 package fr.kungfunantes.backend.model;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -10,6 +13,9 @@ import io.swagger.annotations.ApiModel;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
+
+import fr.kungfunantes.backend.model.test.TestResult;
 
 @Entity
 @ApiModel
@@ -25,9 +31,17 @@ public class Group {
     private Long id;
     private String name;
 
-    @OneToMany(mappedBy = "group")
+    @OneToMany(mappedBy = "group", cascade = CascadeType.ALL)
+    @LazyCollection(LazyCollectionOption.TRUE)
     @JsonProperty("members")
     private List<Member> members;
+
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinTable(name = "test_group",
+            joinColumns = @JoinColumn(name = "groupId"),
+            inverseJoinColumns = @JoinColumn(name = "testId")
+    )
+    private Set<Group> groups;
 
     public Long getId() {
         return id;

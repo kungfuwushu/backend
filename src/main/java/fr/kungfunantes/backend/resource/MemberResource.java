@@ -18,6 +18,12 @@ public class MemberResource {
 	@Autowired
 	private MemberRepository memberRepository;
 
+	@GetMapping("/members")
+	@ResponseBody
+	public List<Member> all() {
+		return memberRepository.findAll();
+	}
+
     @GetMapping("/members/{id}")
     @ResponseBody
 	public Member byId(@PathVariable long id) {
@@ -53,4 +59,10 @@ public class MemberResource {
 	public int deleteGroup(@PathVariable long memberId) {
 		return memberRepository.deleteMemberGroup(memberId);
 	}
+
+	@PutMapping("/members/remove-group/{groupId}")
+	public int removeGroup(@PathVariable long groupId) {
+		return memberRepository.removeGroup(groupId);
+	}
+
 }
