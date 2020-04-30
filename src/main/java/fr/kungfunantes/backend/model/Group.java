@@ -31,10 +31,18 @@ public class Group {
     private Long id;
     private String name;
 
-    @OneToMany(mappedBy = "group", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "group")
     @LazyCollection(LazyCollectionOption.TRUE)
     @JsonProperty("members")
     private List<Member> members;
+
+    @PreRemove
+    private void preRemove() {
+        for (Member m : members) {
+            m.setGroup(null);
+        }
+    }
+
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(name = "test_group",
