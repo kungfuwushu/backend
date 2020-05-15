@@ -1,7 +1,9 @@
 package fr.kungfunantes.backend.resource;
 
 import fr.kungfunantes.backend.model.Group;
+import fr.kungfunantes.backend.model.Member;
 import fr.kungfunantes.backend.repository.GroupRepository;
+import fr.kungfunantes.backend.repository.MemberRepository;
 import fr.kungfunantes.backend.utils.RestPreconditions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -12,6 +14,9 @@ import java.util.List;
 
 @RestController
 public class GroupResource {
+
+	@Autowired
+	private MemberRepository memberRepository;
 
 	@Autowired
 	private GroupRepository groupRepository;
@@ -45,5 +50,35 @@ public class GroupResource {
     @ResponseBody
 	public List<Group> byTestId(@PathVariable Long id) {
         return groupRepository.findByTestId(id);
+	}
+
+	@PutMapping("/group/{groupId}/add-member/{memberId}")
+	@ResponseBody
+	public Group addMember(@PathVariable Long groupId, @PathVariable Long memberId) {
+
+		Member member = memberRepository.findById(memberId).get();
+		Group group = groupRepository.findById(groupId).get();
+
+		group.addMember(member);
+		member.addGroup(group);
+
+		groupRepository.save(group);
+
+		return group;
+	}
+
+	@DeleteMapping("/group/{groupId}/remove-member/{memberId}")
+	@ResponseBody
+	public Group removeMember(@PathVariable Long groupId, @PathVariable Long memberId) {
+
+		Member member = memberRepository.findById(memberId).get();
+		Group group = groupRepository.findById(groupId).get();
+
+		group.removeMember(member);
+		member.removeGroup(group);
+
+		groupRepository.save(group);
+
+		return group;
 	}
 }

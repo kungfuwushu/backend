@@ -9,6 +9,8 @@ import io.swagger.annotations.ApiModel;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Set;
+import java.util.HashSet;
 
 @Entity
 @ApiModel
@@ -31,11 +33,12 @@ public class Member {
     @JsonProperty("profile")
     private Profile profile;
 
-    @ManyToOne(fetch = FetchType.EAGER, optional = true)
-    @JoinColumn(name = "groupId", nullable = true)
-    @JsonIdentityReference(alwaysAsId = true)
-    @JsonProperty("groupId")
-    private Group group;
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(name = "group_member",
+            joinColumns = @JoinColumn(name = "memberId"),
+            inverseJoinColumns = @JoinColumn(name = "groupId")
+    )
+    private Set<Group> groups = new HashSet<>();
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "rankId", nullable = false)
@@ -47,7 +50,6 @@ public class Member {
 
     public Member(Profile profile, Rank rank) {
       this.profile = profile;
-      this.group = null;
       this.rank = rank;
     }
 
@@ -91,12 +93,25 @@ public class Member {
         this.profile = profile;
     }
 
-    public Group getGroup() {
-        return group;
+    public Set<Long> getGroups() {
+        // only return ids to prevents subsequent member simplification
+        Set<Long> groupsId = new HashSet<Long>();
+        for (Group group: this.groups) {
+            groupsId.add(group.getId());
+        }
+        return groupsId;
     }
 
-    public void setGroup(Group group) {
-        this.group = group;
+    public void setGroups(Set<Group> groups) {
+        this.groups = groups;
+    }
+
+    public void addGroup(Group group) {
+        this.groups.add(group);
+    }
+
+    public void removeGroup(Group group) {
+        this.groups.remove(group);
     }
 
     public Rank getRank() {
@@ -106,4 +121,5 @@ public class Member {
     public void setRank(Rank rank) {
         this.rank = rank;
     }
+
 }

@@ -48,21 +48,4 @@ public class MemberResource {
         return memberRepository.findByTestId(id);
 	}
 
-	@PutMapping("/member/{memberId}/group-update/{groupId}")
-	@ResponseBody
-	public int updateGroup(@PathVariable long memberId, @PathVariable long groupId) {
-		return memberRepository.updateMemberGroup(memberId, groupId);
-	}
-
-	@PutMapping("/member/{memberId}/delete-group")
-	@ResponseBody
-	public int deleteGroup(@PathVariable long memberId) {
-		return memberRepository.deleteMemberGroup(memberId);
-	}
-
-	@PutMapping("/members/remove-group/{groupId}")
-	public int removeGroup(@PathVariable long groupId) {
-		return memberRepository.removeGroup(groupId);
-	}
-
 }
