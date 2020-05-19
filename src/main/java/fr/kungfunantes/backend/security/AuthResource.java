@@ -82,6 +82,7 @@ public class AuthResource {
         response.put("token", new JwtAuthenticationResponse(jwt));
         response.put("user", (UserPrincipal) authentication.getPrincipal()); // get signed in user
 
+
         return ResponseEntity.ok(response);
     }
 

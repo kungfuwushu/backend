@@ -5,6 +5,7 @@ import fr.kungfunantes.backend.repository.MemberRepository;
 import fr.kungfunantes.backend.utils.RestPreconditions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,6 +17,12 @@ public class MemberResource {
 
 	@Autowired
 	private MemberRepository memberRepository;
+
+	@GetMapping("/members")
+	@ResponseBody
+	public List<Member> all() {
+		return memberRepository.findAll();
+	}
 
     @GetMapping("/members/{id}")
     @ResponseBody
@@ -40,4 +47,5 @@ public class MemberResource {
 	public List<Member> byTestId(@PathVariable long id) {
         return memberRepository.findByTestId(id);
 	}
+
 }

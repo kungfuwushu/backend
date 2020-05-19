@@ -95,4 +95,8 @@ public abstract class Test {
     public void setGroups(Set<Group> groups) {
         this.groups = groups;
     }
+
+    public void removeGroup(Group group) {
+        this.groups.remove(group);
+    }
 }
