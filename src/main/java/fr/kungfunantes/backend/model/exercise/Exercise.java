@@ -45,12 +45,6 @@ public abstract class Exercise {
     private String description;
     private String image;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "categoryId", nullable = false)
-    @JsonIdentityReference(alwaysAsId = true)
-    @JsonProperty("categoryId")
-    private Category category;
-
     public Long getId() {
         return id;
     }
@@ -83,13 +77,13 @@ public abstract class Exercise {
         this.image = image;
     }
 
-    public Category getCategory() {
+    /*public Category getCategory() {
         return category;
     }
 
     public void setCategory(Category category) {
         this.category = category;
-    }
+    }*/
 
     public abstract String getType();
 }
