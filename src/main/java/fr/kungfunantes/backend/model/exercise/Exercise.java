@@ -77,13 +77,5 @@ public abstract class Exercise {
         this.image = image;
     }
 
-    /*public Category getCategory() {
-        return category;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
-    }*/
-
     public abstract String getType();
 }
