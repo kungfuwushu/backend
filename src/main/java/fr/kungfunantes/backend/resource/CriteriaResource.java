@@ -36,7 +36,6 @@ public class CriteriaResource {
 	@ResponseStatus(HttpStatus.CREATED)
 	@ResponseBody
 	public Criteria create(@RequestBody Criteria criteria) {
-    System.out.println(criteria);
 		return Preconditions.checkNotNull(criteriaRepository.save(criteria));
 	}
 }
