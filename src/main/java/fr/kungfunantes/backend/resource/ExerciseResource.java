@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.transaction.annotation.Transactional;
+import com.google.common.base.Preconditions;
 
 import java.util.List;
 import java.util.Optional;
@@ -37,6 +38,13 @@ public class ExerciseResource {
 	@ResponseBody
 	public Optional<Exercise> byId(@PathVariable("id") Long id) {
 			return exerciseRepository.findById(id);
+	}
+
+	@PostMapping("/exercises")
+	@ResponseStatus(HttpStatus.CREATED)
+	@ResponseBody
+	public Exercise create(@RequestBody Exercise exercise) {
+		return Preconditions.checkNotNull(exerciseRepository.save(exercise));
 	}
 
 	@DeleteMapping("/exercises/{id}")

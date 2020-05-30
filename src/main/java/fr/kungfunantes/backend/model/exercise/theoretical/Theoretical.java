@@ -10,6 +10,7 @@ import javax.persistence.*;
 @DiscriminatorValue(value = "THEORETICAL")
 public class Theoretical extends Exercise {
     private String question;
+    private String reponse;
 
     public String getQuestion() {
         return question;
@@ -17,6 +18,14 @@ public class Theoretical extends Exercise {
 
     public void setQuestion(String question) {
         this.question = question;
+    }
+
+    public String getReponse() {
+        return question;
+    }
+
+    public void setReponse(String reponse) {
+        this.reponse = reponse;
     }
 
     public String getType() {

@@ -12,27 +12,23 @@ import javax.persistence.Enumerated;
 @ApiModel
 @DiscriminatorValue(value = "PHYSICAL")
 public class Physical extends Exercise {
-    public enum Objective {
-        MINIMUM,
-        MAXIMUM,
-    }
-
     public enum MeasurementUnit {
         METER,
+        CENTIMETER,
         SECOND,
+        MINUTE
     }
 
-    @Enumerated(EnumType.STRING)
-    private Objective objective;
+    private String objective;
 
     @Enumerated(EnumType.STRING)
     private MeasurementUnit measurementUnit;
 
-    public Objective getObjective() {
+    public String getObjective() {
         return objective;
     }
 
-    public void setObjective(Objective objective) {
+    public void setObjective(String objective) {
         this.objective = objective;
     }
 
